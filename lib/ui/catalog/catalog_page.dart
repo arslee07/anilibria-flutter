@@ -12,19 +12,26 @@ class CatalogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CatalogPageAppBar(),
-        body: RefreshIndicator(
-          onRefresh: () async => await catalogController.fetchList(),
-          child: catalogController.obx(
-              (state) => CatalogPageTitleList(state: state),
-              onError: (error) => ListView(children: [
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('бля ошибка =(\n\n\n$error'),
-                      ),
-                    ),
-                  ])),
-        ));
+      appBar: CatalogPageAppBar(),
+      body: RefreshIndicator(
+        onRefresh: () async => await catalogController.fetchList(),
+        child: catalogController.obx(
+          (state) => CatalogPageTitleList(
+            state: state,
+            scrollController: catalogController.scrollController,
+          ),
+          onError: (error) => ListView(
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('бля ошибка =(\n\n\n$error'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -2,9 +2,9 @@
 
 class TitleModel {
   late final int id;
-  late final String? code;
+  late final String code;
   late final NamesModel names;
-  late final String? announce;
+  late final String announce;
   late final StatusModel status;
   late final PosterModel poster;
   late final int updated;
@@ -40,11 +40,12 @@ class TitleModel {
   });
 
   TitleModel.fromJson(Map<String, dynamic> json) {
+    print(json['names']['ru']);
     this.id = json['id'];
     this.code = json['code'];
     this.names = NamesModel.fromJson(json['names']);
     this.announce = json['announce'];
-    this.status = StatusModel.fromJson(json['announce']);
+    this.status = StatusModel.fromJson(json['status']);
     this.poster = PosterModel.fromJson(json['poster']);
     this.updated = json['updated'];
     this.lastChange = json['last_change'];
@@ -58,7 +59,7 @@ class TitleModel {
     this.inFavorites = json['in_favorites'];
     this.blocked = BlockedModel.fromJson(json['blocked']);
     this.player = PlayerModel.fromJson(json['player']);
-    this.torrents = TorrentsModel.fromJson(json['player']);
+    this.torrents = TorrentsModel.fromJson(json['torrents']);
   }
 
   static List<TitleModel> listFromJson(list) =>
@@ -68,7 +69,7 @@ class TitleModel {
 class NamesModel {
   late final String ru;
   late final String en;
-  late final String? alternative;
+  late final String alternative;
 
   NamesModel({
     required this.ru,
@@ -101,7 +102,7 @@ class StatusModel {
 class PosterModel {
   late final String url;
   late final int updatedTimestamp;
-  late final String? rawBase64File;
+  late final String rawBase64File;
 
   PosterModel({
     required this.url,
@@ -117,7 +118,7 @@ class PosterModel {
 }
 
 class TypeModel {
-  late final String fullString;
+  late final String? fullString = 'aboba';
   late final int code;
   late final String string;
   late final int series;
@@ -132,7 +133,8 @@ class TypeModel {
   });
 
   TypeModel.fromJson(Map<String, dynamic> json) {
-    this.fullString = json['full_string'];
+    print(json);
+    this.fullString ??= json['full_string'];
     this.code = json['code'];
     this.string = json['string'];
     this.series = json['series'];
@@ -165,7 +167,7 @@ class TeamModel {
 }
 
 class SeasonModel {
-  late final String? string;
+  late final String string;
   late final int code;
   late final int year;
   late final int weekDay;
@@ -181,7 +183,7 @@ class SeasonModel {
     this.string = json['string'];
     this.code = json['code'];
     this.year = json['year'];
-    this.weekDay = json['weekDay'];
+    this.weekDay = json['week_day'];
   }
 }
 
@@ -253,7 +255,7 @@ class SerieModel {
   SerieModel.fromJson(Map<String, dynamic> json) {
     this.serie = json['serie'];
     this.createdTimestamp = json['created_timestamp'];
-    this.hls = HlsModel.fromJson(json['serie']);
+    this.hls = HlsModel.fromJson(json['hls']);
   }
 
   static List<SerieModel> listFromJson(list) =>
@@ -261,9 +263,9 @@ class SerieModel {
 }
 
 class HlsModel {
-  late final String? fhd;
-  late final String? hd;
-  late final String? sd;
+  late final String fhd;
+  late final String hd;
+  late final String sd;
 
   HlsModel({
     required this.fhd,
@@ -288,7 +290,7 @@ class TorrentsModel {
   });
 
   TorrentsModel.fromJson(Map<String, dynamic> json) {
-    this.series = json['series'];
+    this.series = SeriesModel.fromJson(json['series']);
     this.list = TorrentModel.listFromJson(json['list']);
   }
 }
@@ -303,8 +305,8 @@ class TorrentModel {
   late final int totalSize;
   late final String url;
   late final int uploadedTimestamp;
-  late final String? metadata;
-  late final String? rawBase64File;
+  late final String metadata;
+  late final String rawBase64File;
 
   TorrentModel({
     required this.torrentId,

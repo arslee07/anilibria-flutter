@@ -27,7 +27,7 @@ class TitlePageAppBar extends StatelessWidget {
                 opacity: constraints.biggest.height <= 80.0 ? 1.0 : 0.0,
               ),
               background: Image.network(
-                'https://static.wwnd.fun' + model.poster.url,
+                'https://static.wwnd.space' + model.poster.url,
                 fit: BoxFit.cover,
               ));
         },

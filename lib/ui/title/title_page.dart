@@ -30,8 +30,11 @@ class TitlePage extends StatelessWidget {
                 Padding(padding: EdgeInsets.only(bottom: 8)),
                 Divider(),
                 ElevatedButton(
-                    onPressed: () => Get.to(() => PlayerPage(
-                        'https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8')),
+                    onPressed: () => Get.to(
+                          () => PlayerPage(
+                            'https://multiplatform-f.akamaihd.net/i/multi/will/bunny/big_buck_bunny_,640x360_400,640x360_700,640x360_1000,950x540_1500,.f4v.csmil/master.m3u8',
+                          ),
+                        ),
                     child: Text('play smth'))
               ],
             )

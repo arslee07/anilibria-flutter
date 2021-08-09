@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 
 class CatalogPageTitleList extends StatelessWidget {
   final List<TitleModel>? state;
-  const CatalogPageTitleList({required this.state});
+  final ScrollController scrollController;
+  const CatalogPageTitleList(
+      {required this.state, required this.scrollController});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class CatalogPageTitleList extends StatelessWidget {
         );
       },
       // separatorBuilder: (context, index) => Divider(),
+      controller: scrollController,
     );
   }
 }

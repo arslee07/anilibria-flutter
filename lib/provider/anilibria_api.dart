@@ -7,10 +7,11 @@ class AnilibriaApi extends GetConnect {
   @override
   void onInit() {
     httpClient.baseUrl = baseUrl;
+    httpClient.userAgent = 'curl';
   }
 
   Future<Response<List<TitleModel>>> getUpdates({
-    int limit = 10,
+    int limit = 25,
     int after = 0,
   }) async {
     return await get(
