@@ -83,6 +83,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_hooks:
+    dependency: "direct main"
+    description:
+      name: flutter_hooks
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -91,7 +98,7 @@ packages:
     source: hosted
     version: "1.0.4"
   flutter_riverpod:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
@@ -107,6 +114,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  hooks_riverpod:
+    dependency: "direct main"
+    description:
+      name: hooks_riverpod
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   http:
     dependency: transitive
     description:

@@ -3,9 +3,10 @@ import 'package:anilibria_app/utils/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:routemaster/routemaster.dart';
 
 void main() {
-  // Routemaster.setPathUrlStrategy();
+  Routemaster.setPathUrlStrategy();
   runApp(const ProviderScope(child: App()));
 }
 
@@ -41,13 +42,14 @@ class App extends ConsumerWidget {
           routerDelegate: ref.read(routerDelegateProvider),
           debugShowCheckedModeBanner: false,
           builder: (context, child) => ResponsiveWrapper.builder(
-            child,
-            minWidth: 480,
+            ClampingScrollWrapper.builder(context, child!),
             breakpoints: const [
-              ResponsiveBreakpoint.resize(480, name: MOBILE),
-              ResponsiveBreakpoint.autoScale(800, name: TABLET),
-              ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+              ResponsiveBreakpoint.resize(350, name: MOBILE),
+              ResponsiveBreakpoint.autoScale(600, name: TABLET),
+              ResponsiveBreakpoint.resize(800, name: DESKTOP),
+              ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
             ],
+            maxWidth: 1280,
             background: Container(color: const Color(0xFFF5F5F5)),
           ),
         );

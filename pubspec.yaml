@@ -13,7 +13,8 @@ dependencies:
     anilibria: ^0.0.1
     flutter:
         sdk: flutter
-    flutter_riverpod: ^1.0.2
+    flutter_hooks: ^0.18.1
+    hooks_riverpod: ^1.0.2
     responsive_framework: ^0.1.5
     routemaster: ^0.10.0-dev5
 
