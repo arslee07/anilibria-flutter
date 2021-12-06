@@ -1,6 +1,7 @@
 import 'package:anilibria_app/features/updates_feed/controllers/updates_feed_page_controller.dart';
 import 'package:anilibria_app/features/updates_feed/ui/components/title_item.dart';
 import 'package:anilibria_app/utils/config.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,63 +12,85 @@ class UpdatesFeedPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(updatesFeedPageControllerProvider);
+    final scroll = useScrollController();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AniLibria'),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
-      ),
-      body: controller.titles.when(
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        data: (data) {
-          final scroll = useScrollController();
-          scroll.addListener(() {
-            if (scroll.position.extentAfter < 200) {
-              if (!controller.isLoadingMore) {
-                controller.isLoadingMore = true;
-                controller
-                    .fetchMore()
-                    .catchError((err, stack) => print(stack))
-                    .whenComplete(() => controller.isLoadingMore = false);
-              }
-            }
-          });
-          return RefreshIndicator(
-            onRefresh: () => controller.fetch(),
-            child: ListView.builder(
-              controller: scroll,
-              itemBuilder: (context, index) {
-                if (index >= data.length) {
-                  return const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                }
+      body: RefreshIndicator(
+        onRefresh: controller.fetch,
+        edgeOffset: 80,
+        child: Scrollbar(
+          controller: scroll,
+          child: CustomScrollView(
+            controller: scroll,
+            slivers: [
+              SliverAppBar(
+                title: const Text('AniLibria'),
+                actions: [
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+                ],
+                floating: true,
+                snap: true,
+              ),
+              controller.titles.when(
+                loading: () => const SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+                data: (data) {
+                  scroll.addListener(() {
+                    if (scroll.position.extentAfter < 200) {
+                      if (!controller.isLoadingMore) {
+                        controller.isLoadingMore = true;
+                        controller
+                            .fetchMore()
+                            .catchError((err, stack) => print(stack))
+                            .whenComplete(
+                                () => controller.isLoadingMore = false);
+                      }
+                    }
+                  });
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        if (index >= data.length) {
+                          return const Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: Center(child: CircularProgressIndicator()),
+                          );
+                        }
 
-                final model = data[index];
-                return TitleItem(
-                  thumbnail: Image(
-                    image: NetworkImage(
-                      kStaticUrl.toString() + data[index].poster!.url!,
+                        final model = data[index];
+                        final names = model.names;
+                        final poster = model.poster;
+                        final series = model.player?.series?.string;
+                        final title = (names?.ru ??
+                                names?.alternative ??
+                                names?.en ??
+                                '[Без навзвания]') +
+                            (series == null || series == '1-1'
+                                ? ''
+                                : ' ($series)');
+
+                        return TitleItem(
+                          thumbnail: FancyShimmerImage(
+                            imageUrl:
+                                kStaticUrl.toString() + (poster?.url ?? ''),
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                          title: title,
+                          subtitle: model.description ?? '',
+                        );
+                      },
+                      childCount: data.length + 1,
                     ),
-                  ),
-                  title: model.names != null
-                      ? model.names!.ru ??
-                          model.names!.alternative ??
-                          model.names!.en ??
-                          '[Без навзвания]'
-                      : '[Без названия]',
-                  subtitle: data[index].description ?? '',
-                );
-              },
-              itemCount: data.length + 1,
-            ),
-          );
-        },
-        error: (err, stack) => Center(
-          child: Text(err.toString()),
+                  );
+                },
+                error: (err, stack) => SliverFillRemaining(
+                  child: Center(child: Text(err.toString())),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -21,7 +21,13 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
       () async {
         final updates = await _ref.read(anilibriaProvider).getUpdates(
             limit: 15,
-            filter: ['id', 'names', 'description', 'poster'],
+            filter: [
+              'id',
+              'names',
+              'description',
+              'poster',
+              'player.series.string',
+            ],
             descriptionType: DescriptionType.plain);
         return updates.toList();
       },
@@ -31,7 +37,12 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
 
   Future<void> fetchMore() async {
     final resp = await _ref.read(anilibriaProvider).getUpdates(
-      filter: ['names', 'description', 'poster'],
+      filter: [
+        'names',
+        'description',
+        'poster',
+        'player.series.string',
+      ],
       limit: 15,
       after: titles.value?.length ?? 0,
       descriptionType: DescriptionType.plain,

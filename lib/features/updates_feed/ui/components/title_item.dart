@@ -29,7 +29,7 @@ class _TitleDescription extends StatelessWidget {
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              const Padding(padding: EdgeInsets.only(bottom: 2.0)),
+              const Padding(padding: EdgeInsets.only(bottom: 6.0)),
               Expanded(
                 child: Text(
                   subtitle,
@@ -42,7 +42,10 @@ class _TitleDescription extends StatelessWidget {
                     ],
                   ).value,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 14),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).textTheme.caption!.color,
+                  ),
                 ),
               ),
             ],
