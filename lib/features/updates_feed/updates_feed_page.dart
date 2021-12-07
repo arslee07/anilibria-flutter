@@ -1,10 +1,11 @@
 import 'package:anilibria_app/features/updates_feed/updates_feed_page_controller.dart';
-import 'package:anilibria_app/features/updates_feed/ui/components/title_item.dart';
+import 'package:anilibria_app/features/updates_feed/components/title_item.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 
 class UpdatesFeedPage extends HookConsumerWidget {
   const UpdatesFeedPage({Key? key}) : super(key: key);
@@ -71,7 +72,12 @@ class UpdatesFeedPage extends HookConsumerWidget {
                                 : ' ($series)');
 
                         return InkWell(
-                          onTap: model.id == null ? null : () {},
+                          onTap: model.id == null
+                              ? null
+                              : () {
+                                  Routemaster.of(context)
+                                      .push('/titles/${model.id}');
+                                },
                           child: TitleItem(
                             thumbnail: FancyShimmerImage(
                               imageUrl:

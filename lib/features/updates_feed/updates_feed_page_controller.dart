@@ -38,6 +38,7 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
   Future<void> fetchMore() async {
     final resp = await _ref.read(anilibriaProvider).getUpdates(
       filter: [
+        'id',
         'names',
         'description',
         'poster',
