@@ -12,95 +12,70 @@ class UpdatesFeedPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final scrollController = useScrollController();
     final controller = ref.watch(updatesFeedPageControllerProvider);
-    final scroll = useScrollController();
 
     return Scaffold(
-      body: RefreshIndicator(
-        onRefresh: controller.fetch,
-        edgeOffset: 80,
-        child: Scrollbar(
-          controller: scroll,
-          child: CustomScrollView(
-            controller: scroll,
-            slivers: [
-              SliverAppBar(
-                title: const Text('AniLibria'),
-                actions: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-                ],
-                floating: true,
-                snap: true,
-              ),
-              controller.titles.when(
-                loading: () => const SliverFillRemaining(
+      appBar: AppBar(
+        title: const Text('AniLibria'),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
+      ),
+      body: controller.titles.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        data: (data) {
+          scrollController.addListener(() {
+            if (scrollController.position.extentAfter < 200) {
+              if (!controller.isLoadingMore) {
+                controller.isLoadingMore = true;
+                controller
+                    .fetchMore()
+                    .catchError((err, stack) => print(stack))
+                    .whenComplete(() => controller.isLoadingMore = false);
+              }
+            }
+          });
+
+          return ListView.builder(
+            controller: scrollController,
+            itemBuilder: (context, index) {
+              if (index >= data.length) {
+                return const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Center(child: CircularProgressIndicator()),
-                ),
-                data: (data) {
-                  scroll.addListener(() {
-                    if (scroll.position.extentAfter < 200) {
-                      if (!controller.isLoadingMore) {
-                        controller.isLoadingMore = true;
-                        controller
-                            .fetchMore()
-                            .catchError((err, stack) => print(stack))
-                            .whenComplete(
-                                () => controller.isLoadingMore = false);
-                      }
-                    }
-                  });
-                  return SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        if (index >= data.length) {
-                          return const Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Center(child: CircularProgressIndicator()),
-                          );
-                        }
+                );
+              }
 
-                        final model = data[index];
-                        final names = model.names;
-                        final poster = model.poster;
-                        final series = model.player?.series?.string;
-                        final title = (names?.ru ??
-                                names?.alternative ??
-                                names?.en ??
-                                '[Без навзвания]') +
-                            (series == null || series == '1-1'
-                                ? ''
-                                : ' ($series)');
+              final model = data[index];
+              final names = model.names;
+              final poster = model.poster;
+              final series = model.player?.series?.string;
+              final title = (names?.ru ??
+                      names?.alternative ??
+                      names?.en ??
+                      '[Без навзвания]') +
+                  (series == null || series == '1-1' ? '' : ' ($series)');
 
-                        return InkWell(
-                          onTap: model.id == null
-                              ? null
-                              : () {
-                                  Routemaster.of(context)
-                                      .push('/titles/${model.id}');
-                                },
-                          child: TitleItem(
-                            thumbnail: FancyShimmerImage(
-                              imageUrl:
-                                  kStaticUrl.toString() + (poster?.url ?? ''),
-                              width: double.infinity,
-                              height: double.infinity,
-                            ),
-                            title: title,
-                            subtitle: model.description ?? '',
-                          ),
-                        );
+              return InkWell(
+                onTap: model.id == null
+                    ? null
+                    : () {
+                        Routemaster.of(context).push('/titles/${model.id}');
                       },
-                      childCount: data.length + 1,
-                    ),
-                  );
-                },
-                error: (err, stack) => SliverFillRemaining(
-                  child: Center(child: Text(err.toString())),
+                child: TitleItem(
+                  thumbnail: FancyShimmerImage(
+                    imageUrl: kStaticUrl.toString() + (poster?.url ?? ''),
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                  title: title,
+                  subtitle: model.description ?? '',
                 ),
-              ),
-            ],
-          ),
-        ),
+              );
+            },
+            itemCount: data.length + 1,
+          );
+        },
+        error: (err, stack) => Center(child: Text(err.toString())),
       ),
     );
   }
