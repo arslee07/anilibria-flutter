@@ -1,4 +1,4 @@
-import 'package:anilibria_app/features/updates_feed/controllers/updates_feed_page_controller.dart';
+import 'package:anilibria_app/features/updates_feed/updates_feed_page_controller.dart';
 import 'package:anilibria_app/features/updates_feed/ui/components/title_item.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -70,15 +70,18 @@ class UpdatesFeedPage extends HookConsumerWidget {
                                 ? ''
                                 : ' ($series)');
 
-                        return TitleItem(
-                          thumbnail: FancyShimmerImage(
-                            imageUrl:
-                                kStaticUrl.toString() + (poster?.url ?? ''),
-                            width: double.infinity,
-                            height: double.infinity,
+                        return InkWell(
+                          onTap: model.id == null ? null : () {},
+                          child: TitleItem(
+                            thumbnail: FancyShimmerImage(
+                              imageUrl:
+                                  kStaticUrl.toString() + (poster?.url ?? ''),
+                              width: double.infinity,
+                              height: double.infinity,
+                            ),
+                            title: title,
+                            subtitle: model.description ?? '',
                           ),
-                          title: title,
-                          subtitle: model.description ?? '',
                         );
                       },
                       childCount: data.length + 1,

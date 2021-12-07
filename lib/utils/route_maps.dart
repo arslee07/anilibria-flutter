@@ -1,4 +1,4 @@
-import 'package:anilibria_app/features/updates_feed/ui/updates_feed_page.dart';
+import 'package:anilibria_app/features/updates_feed/updates_feed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 
