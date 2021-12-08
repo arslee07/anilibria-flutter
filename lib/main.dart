@@ -20,8 +20,16 @@ class App extends ConsumerWidget {
         primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.red,
-          accentColor: Colors.redAccent,
+          accentColor: Colors.red,
           brightness: Brightness.light,
+        ),
+        appBarTheme: const AppBarTheme(
+          color: Colors.white,
+          foregroundColor: Colors.black,
+        ),
+        chipTheme: const ChipThemeData(
+          backgroundColor: Colors.transparent,
+          shape: StadiumBorder(side: BorderSide()),
         ),
       ),
       dark: ThemeData(

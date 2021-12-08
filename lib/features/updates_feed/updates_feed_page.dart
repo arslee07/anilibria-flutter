@@ -20,62 +20,70 @@ class UpdatesFeedPage extends HookConsumerWidget {
         title: const Text('AniLibria'),
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.search))],
       ),
-      body: controller.titles.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        data: (data) {
-          scrollController.addListener(() {
-            if (scrollController.position.extentAfter < 200) {
-              if (!controller.isLoadingMore) {
-                controller.isLoadingMore = true;
-                controller
-                    .fetchMore()
-                    .catchError((err, stack) => print(stack))
-                    .whenComplete(() => controller.isLoadingMore = false);
+      body: RefreshIndicator(
+        onRefresh: controller.fetch,
+        child: controller.titles.when(
+          loading: () => const Center(child: CircularProgressIndicator()),
+          data: (data) {
+            scrollController.addListener(() {
+              if (scrollController.position.extentAfter < 200) {
+                if (!controller.isLoadingMore) {
+                  controller.isLoadingMore = true;
+                  controller
+                      .fetchMore()
+                      .catchError((err, stack) => print(stack))
+                      .whenComplete(() => controller.isLoadingMore = false);
+                }
               }
-            }
-          });
+            });
 
-          return ListView.builder(
-            controller: scrollController,
-            itemBuilder: (context, index) {
-              if (index >= data.length) {
-                return const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              }
+            return ListView.builder(
+              controller: scrollController,
+              itemBuilder: (context, index) {
+                if (index >= data.length) {
+                  return const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                }
 
-              final model = data[index];
-              final names = model.names;
-              final poster = model.poster;
-              final series = model.player?.series?.string;
-              final title = (names?.ru ??
-                      names?.alternative ??
-                      names?.en ??
-                      '[Без навзвания]') +
-                  (series == null || series == '1-1' ? '' : ' ($series)');
+                final model = data[index];
+                final names = model.names;
+                final poster = model.poster;
+                final series = model.player?.series?.string;
+                final title = (names?.ru ??
+                        names?.alternative ??
+                        names?.en ??
+                        '[Без навзвания]') +
+                    (series == null || series == '1-1' ? '' : ' ($series)');
 
-              return InkWell(
-                onTap: model.id == null
-                    ? null
-                    : () {
-                        Routemaster.of(context).push('/titles/${model.id}');
-                      },
-                child: TitleItem(
-                  thumbnail: FancyShimmerImage(
-                    imageUrl: kStaticUrl.toString() + (poster?.url ?? ''),
-                    width: double.infinity,
-                    height: double.infinity,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: InkWell(
+                    onTap: model.id == null
+                        ? null
+                        : () {
+                            Routemaster.of(context).push('/titles/${model.id}');
+                          },
+                    child: TitleItem(
+                      thumbnail: Hero(
+                        tag: model.id!,
+                        child: FancyShimmerImage(
+                          imageUrl: kStaticUrl.toString() + (poster?.url ?? ''),
+                          boxFit: BoxFit.cover,
+                        ),
+                      ),
+                      title: title,
+                      subtitle: model.description ?? '',
+                    ),
                   ),
-                  title: title,
-                  subtitle: model.description ?? '',
-                ),
-              );
-            },
-            itemCount: data.length + 1,
-          );
-        },
-        error: (err, stack) => Center(child: Text(err.toString())),
+                );
+              },
+              itemCount: data.length + 1,
+            );
+          },
+          error: (err, stack) => Center(child: Text(err.toString())),
+        ),
       ),
     );
   }

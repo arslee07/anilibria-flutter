@@ -28,7 +28,7 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
               'poster',
               'player.series.string',
             ],
-            descriptionType: DescriptionType.plain);
+            descriptionType: DescriptionType.noViewOrder);
         return updates.toList();
       },
     );
@@ -46,7 +46,7 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
       ],
       limit: 15,
       after: titles.value?.length ?? 0,
-      descriptionType: DescriptionType.plain,
+      descriptionType: DescriptionType.noViewOrder,
     );
     titles.value!.addAll(resp);
     notifyListeners();
