@@ -1,6 +1,7 @@
 import 'package:anilibria_app/features/title_info/components/title_description.dart';
 import 'package:anilibria_app/features/title_info/components/title_head.dart';
 import 'package:anilibria_app/features/title_info/components/title_info.dart';
+import 'package:anilibria_app/features/title_info/components/title_series.dart';
 import 'package:anilibria_app/features/title_info/title_info_page_controller.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -58,6 +59,13 @@ class TitleInfoPage extends HookConsumerWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: TitleDescription(data.description!),
+                  ),
+                ),
+              if (data.player?.playlist != null)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: TitleSeries(data),
                   ),
                 ),
               const SliverFillRemaining(),
