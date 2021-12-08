@@ -8,45 +8,44 @@ class TitleSeries extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          final playlist = model.player!.playlist![index];
-
-          return ListTile(
-            title: Text('Серия ' + playlist.serie.toString()),
-            trailing: Wrap(
-              children: [
-                if ((playlist.hls?.fhd ?? '').isNotEmpty)
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'FHD',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+      child: Column(
+        children: [
+          for (final serie in model.player!.playlist!.reversed)
+            ListTile(
+              title: Text('Серия ' + serie.serie.toString()),
+              trailing: Wrap(
+                children: [
+                  if ((serie.hls?.fhd ?? '').isNotEmpty)
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'FHD',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                if ((playlist.hls?.hd ?? '').isNotEmpty)
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'HD',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                  if ((serie.hls?.hd ?? '').isNotEmpty)
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'HD',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                if ((playlist.hls?.sd ?? '').isNotEmpty)
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'SD',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  )
-              ],
+                  if ((serie.hls?.sd ?? '').isNotEmpty)
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        'SD',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    )
+                ],
+              ),
+              tileColor: serie.serie! % 2 == 0
+                  ? const Color.fromARGB(8, 0, 0, 0)
+                  : null,
             ),
-            tileColor: index % 2 == 0 ? const Color.fromARGB(8, 0, 0, 0) : null,
-          );
-        },
-        itemCount: model.player!.playlist!.length,
-        shrinkWrap: true,
+        ],
       ),
     );
   }
