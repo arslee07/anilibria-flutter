@@ -16,7 +16,7 @@ class SearchTile extends StatelessWidget {
       child: Container(
         color: Theme.of(context).listTileTheme.tileColor,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: Row(
             children: [
               SizedBox(
@@ -34,7 +34,7 @@ class SearchTile extends StatelessWidget {
                   ),
                 ),
               ),
-              BlankSpace.right(8),
+              BlankSpace.right(16),
               Expanded(
                 child: Text(
                   model.names?.ru ??

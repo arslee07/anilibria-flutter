@@ -31,7 +31,6 @@ class SearchBar extends ConsumerWidget {
       transitionCurve: Curves.linear,
       implicitDuration: const Duration(milliseconds: 150),
       transitionDuration: const Duration(milliseconds: 150),
-      backgroundColor: Colors.white,
       progress: searchController.titles.when(
         data: (_) => null,
         error: (_, __) => null,
@@ -41,11 +40,14 @@ class SearchBar extends ConsumerWidget {
       debounceDelay: const Duration(milliseconds: 300),
       body: body,
       builder: (BuildContext context, Animation<double> transition) {
+        if ((searchController.titles.value ?? []).isEmpty) return Container();
         return Material(
           color: Theme.of(context).scaffoldBackgroundColor,
+          clipBehavior: Clip.antiAlias,
           elevation: 4,
-          borderRadius: BorderRadius.circular(4),
           child: ListView(
+            padding: EdgeInsets.zero,
+            physics: const NeverScrollableScrollPhysics(),
             children: (searchController.titles.value ?? [])
                 .map((e) => SearchTile(e))
                 .toList(),
