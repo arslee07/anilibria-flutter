@@ -4,9 +4,9 @@ import 'package:anilibria_app/features/title_info/components/title_info.dart';
 import 'package:anilibria_app/features/title_info/components/title_series.dart';
 import 'package:anilibria_app/features/title_info/title_info_page_controller.dart';
 import 'package:anilibria_app/utils/config.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class TitleInfoPage extends HookConsumerWidget {
   final int id;
@@ -34,10 +34,10 @@ class TitleInfoPage extends HookConsumerWidget {
                 flexibleSpace: FlexibleSpaceBar(
                   background: Hero(
                     tag: id,
-                    child: FancyShimmerImage(
-                      imageUrl:
-                          kStaticUrl.toString() + (data.poster?.url ?? ''),
-                      boxFit: BoxFit.cover,
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: kStaticUrl.toString() + (data.poster?.url ?? ''),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

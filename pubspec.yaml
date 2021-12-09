@@ -10,15 +10,17 @@ environment:
 
 dependencies:
     adaptive_theme: ^2.3.0
-    anilibria: ^0.2.0
+    anilibria: ^0.3.0
     expandable_text: ^2.2.0
     fancy_shimmer_image: ^2.0.1+1
     flutter:
         sdk: flutter
     flutter_hooks: ^0.18.1
     hooks_riverpod: ^1.0.2
+    material_floating_search_bar: ^0.3.6
     responsive_framework: ^0.1.5
     routemaster: ^0.10.0-dev5
+    transparent_image: ^2.0.0
 
 dev_dependencies:
     flutter_lints: ^1.0.4

@@ -4,7 +4,11 @@ import 'package:flutter/widgets.dart' as flutter;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final updatesFeedPageControllerProvider = ChangeNotifierProvider(
-  (ref) => UpdatesFeedPageController(ref),
+  (ref) {
+    final c = UpdatesFeedPageController(ref);
+    ref.onDispose(() => c.scrollController.dispose());
+    return c;
+  },
 );
 
 class UpdatesFeedPageController extends flutter.ChangeNotifier {
@@ -12,7 +16,11 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
   AsyncValue<List<Title>> titles;
   bool isLoadingMore = false;
 
-  UpdatesFeedPageController(this._ref) : titles = const AsyncValue.loading() {
+  final flutter.ScrollController scrollController;
+
+  UpdatesFeedPageController(this._ref)
+      : titles = const AsyncValue.loading(),
+        scrollController = flutter.ScrollController() {
     fetch();
   }
 
