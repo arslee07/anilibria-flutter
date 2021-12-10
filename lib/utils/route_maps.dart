@@ -1,3 +1,4 @@
+import 'package:anilibria_app/features/player/player_page.dart';
 import 'package:anilibria_app/features/title_info/title_info_page.dart';
 import 'package:anilibria_app/features/updates_feed/updates_feed_page.dart';
 import 'package:flutter/material.dart';
@@ -9,5 +10,8 @@ final routeMap = RouteMap(
     '/': (_) => const MaterialPage(child: UpdatesFeedPage()),
     '/titles/:id': (_) =>
         MaterialPage(child: TitleInfoPage(int.parse(_.pathParameters['id']!))),
+    '/player': (_) => _.queryParameters['q'] == null
+        ? const Redirect('/')
+        : MaterialPage(child: PlayerPage(_.queryParameters['q']!)),
   },
 );

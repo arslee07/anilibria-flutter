@@ -1,5 +1,6 @@
 import 'package:anilibria/anilibria.dart' as anilibria;
 import 'package:flutter/material.dart';
+import 'package:routemaster/routemaster.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class TitleSeries extends StatelessWidget {
@@ -21,7 +22,10 @@ class TitleSeries extends StatelessWidget {
                   children: [
                     if ((serie.hls?.fhd ?? '').isNotEmpty)
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => Routemaster.of(context).push(
+                          '/player',
+                          queryParameters: {'q': serie.hls!.fhd!},
+                        ),
                         child: const Text(
                           'FHD',
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -29,7 +33,10 @@ class TitleSeries extends StatelessWidget {
                       ),
                     if ((serie.hls?.hd ?? '').isNotEmpty)
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => Routemaster.of(context).push(
+                          '/player',
+                          queryParameters: {'q': serie.hls!.hd!},
+                        ),
                         child: const Text(
                           'HD',
                           style: TextStyle(fontWeight: FontWeight.bold),
@@ -37,7 +44,10 @@ class TitleSeries extends StatelessWidget {
                       ),
                     if ((serie.hls?.sd ?? '').isNotEmpty)
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => Routemaster.of(context).push(
+                          '/player',
+                          queryParameters: {'q': serie.hls!.sd!},
+                        ),
                         child: const Text(
                           'SD',
                           style: TextStyle(fontWeight: FontWeight.bold),
