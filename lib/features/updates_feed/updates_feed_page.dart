@@ -4,11 +4,11 @@ import 'package:anilibria_app/features/updates_feed/updates_feed_page_controller
 import 'package:anilibria_app/features/updates_feed/components/title_item.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:anilibria_app/utils/widgets.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class UpdatesFeedPage extends HookConsumerWidget {
   const UpdatesFeedPage({Key? key}) : super(key: key);
@@ -69,6 +69,7 @@ class UpdatesFeedBody extends ConsumerWidget {
 
     return RefreshIndicator(
       onRefresh: feedController.fetch,
+      edgeOffset: 56,
       child: feedController.titles.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         data: (data) {
@@ -117,10 +118,9 @@ class UpdatesFeedBody extends ConsumerWidget {
                     child: TitleItem(
                       thumbnail: Hero(
                         tag: model.id!,
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: kStaticUrl.toString() + (poster?.url ?? ''),
-                          fit: BoxFit.cover,
+                        child: FancyShimmerImage(
+                          imageUrl: kStaticUrl.toString() + (poster?.url ?? ''),
+                          boxFit: BoxFit.cover,
                         ),
                       ),
                       title: title,

@@ -1,9 +1,9 @@
 import 'package:anilibria/anilibria.dart' as anilibria;
 import 'package:anilibria_app/utils/config.dart';
 import 'package:anilibria_app/utils/widgets.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class SearchTile extends StatelessWidget {
   final anilibria.Title model;
@@ -26,10 +26,10 @@ class SearchTile extends StatelessWidget {
                   tag: model.id!,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
-                    child: FadeInImage.memoryNetwork(
-                      placeholder: kTransparentImage,
-                      image: kStaticUrl.toString() + (model.poster?.url ?? ''),
-                      fit: BoxFit.cover,
+                    child: FancyShimmerImage(
+                      imageUrl:
+                          kStaticUrl.toString() + (model.poster?.url ?? ''),
+                      boxFit: BoxFit.cover,
                     ),
                   ),
                 ),
