@@ -16,8 +16,11 @@ class PlayerPage extends ConsumerWidget {
         controls: FlickPortraitControls(
           iconSize: 32,
           fontSize: 16,
-          progressBarSettings:
-              FlickProgressBarSettings(height: 5, handleRadius: 5),
+          progressBarSettings: FlickProgressBarSettings(
+            height: 5,
+            handleRadius: 5,
+            backgroundColor: Colors.white24,
+          ),
         ),
         videoFit: BoxFit.contain,
       ),

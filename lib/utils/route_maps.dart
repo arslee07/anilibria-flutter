@@ -12,6 +12,9 @@ final routeMap = RouteMap(
         MaterialPage(child: TitleInfoPage(int.parse(_.pathParameters['id']!))),
     '/player': (_) => _.queryParameters['q'] == null
         ? const Redirect('/')
-        : MaterialPage(child: PlayerPage(_.queryParameters['q']!)),
+        : MaterialPage(
+            child: PlayerPage(_.queryParameters['q']!),
+            maintainState: false,
+          ),
   },
 );
