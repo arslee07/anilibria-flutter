@@ -45,13 +45,13 @@ class SearchBar extends ConsumerWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           clipBehavior: Clip.antiAlias,
           elevation: 4,
-          child: ListView(
+          child: ListView.builder(
             padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
-            children: (searchController.titles.value ?? [])
-                .map((e) => SearchTile(e))
-                .toList(),
             shrinkWrap: true,
+            itemBuilder: (BuildContext context, int index) =>
+                SearchTile((searchController.titles.value ?? [])[index]),
+            itemCount: (searchController.titles.value ?? []).length,
           ),
         );
       },

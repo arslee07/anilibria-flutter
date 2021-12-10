@@ -6,6 +6,7 @@ import 'package:anilibria_app/features/title_info/title_info_page_controller.dar
 import 'package:anilibria_app/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class TitleInfoPage extends HookConsumerWidget {
@@ -61,12 +62,10 @@ class TitleInfoPage extends HookConsumerWidget {
                     child: TitleDescription(data.description!),
                   ),
                 ),
-              if (data.player?.playlist != null)
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: TitleSeries(data),
-                  ),
+              if (data.player != null)
+                SliverPadding(
+                  padding: const EdgeInsets.all(2),
+                  sliver: TitleSeries(data),
                 ),
               const SliverFillRemaining(),
             ],
