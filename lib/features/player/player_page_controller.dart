@@ -19,7 +19,7 @@ final playerPageControllerProvider =
       allowedScreenSleep: false,
       showControlsOnInitialize: false,
       allowMuting: false,
-      full
+      allowFullScreen: false,
       placeholder: const Center(child: CircularProgressIndicator()),
       overlay: const Center(child: CircularProgressIndicator()),
       systemOverlaysOnEnterFullScreen: [],
