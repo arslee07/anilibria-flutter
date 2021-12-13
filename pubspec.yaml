@@ -24,6 +24,9 @@ dependencies:
     sliver_tools: ^0.2.5
     flick_video_player: ^0.4.0-dev.4
     video_player: ^2.2.7
+    video_player_web_hls: ^0.1.11+2
+    chewie:
+        git: https://github.com/brianegan/chewie
 
 dev_dependencies:
     flutter_lints: ^1.0.4
