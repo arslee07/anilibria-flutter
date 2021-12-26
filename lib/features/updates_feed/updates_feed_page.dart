@@ -35,79 +35,83 @@ class UpdatesFeedBody extends ConsumerWidget {
       }
     });
 
-    return CustomScrollView(
-      controller: scrollController,
-      slivers: [
-        SliverAppBar(
-          title: TextField(
-            onTap: () => context.push('/titles/search'),
-            decoration: const InputDecoration(
-              icon: Icon(Icons.search),
-              hintText: 'Поиск по навзанию...',
-              border: InputBorder.none,
+    return RefreshIndicator(
+      onRefresh: feedController.fetch,
+      edgeOffset: 56,
+      child: CustomScrollView(
+        controller: scrollController,
+        slivers: [
+          SliverAppBar(
+            title: TextField(
+              onTap: () => context.push('/titles/search'),
+              decoration: const InputDecoration(
+                icon: Icon(Icons.search),
+                hintText: 'Поиск по навзанию...',
+                border: InputBorder.none,
+              ),
+              focusNode: AlwaysDisabledFocusNode(),
+              enableInteractiveSelection: false,
+              mouseCursor: SystemMouseCursors.click,
+              readOnly: true,
             ),
-            focusNode: AlwaysDisabledFocusNode(),
-            enableInteractiveSelection: false,
-            mouseCursor: SystemMouseCursors.click,
-            readOnly: true,
+            forceElevated: true,
+            floating: true,
+            snap: true,
           ),
-          forceElevated: true,
-          floating: true,
-          snap: true,
-        ),
-        feedController.titles.when(
-          data: (data) => SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                if (index >= data.length) {
-                  return const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(child: CircularProgressIndicator()),
-                  );
-                }
+          feedController.titles.when(
+            data: (data) => SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  if (index >= data.length) {
+                    return const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    );
+                  }
 
-                final model = data[index];
-                final names = model.names;
-                final poster = model.poster;
-                final series = model.player?.series?.string;
-                final title = (names?.ru ??
-                        names?.alternative ??
-                        names?.en ??
-                        '[Без навзвания]') +
-                    (series == null || series == '1-1' ? '' : ' ($series)');
+                  final model = data[index];
+                  final names = model.names;
+                  final poster = model.poster;
+                  final series = model.player?.series?.string;
+                  final title = (names?.ru ??
+                          names?.alternative ??
+                          names?.en ??
+                          '[Без навзвания]') +
+                      (series == null || series == '1-1' ? '' : ' ($series)');
 
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2),
-                  child: InkWell(
-                    onTap: model.id == null
-                        ? null
-                        : () => context.push('/titles/${model.id}'),
-                    child: TitleItem(
-                      thumbnail: Hero(
-                        tag: model.id!,
-                        child: FadeInImage.memoryNetwork(
-                          image: kStaticUrl.toString() + (poster?.url ?? ''),
-                          placeholder: kTransparentImage,
-                          fit: BoxFit.cover,
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: InkWell(
+                      onTap: model.id == null
+                          ? null
+                          : () => context.push('/titles/${model.id}'),
+                      child: TitleItem(
+                        thumbnail: Hero(
+                          tag: model.id!,
+                          child: FadeInImage.memoryNetwork(
+                            image: kStaticUrl.toString() + (poster?.url ?? ''),
+                            placeholder: kTransparentImage,
+                            fit: BoxFit.cover,
+                          ),
                         ),
+                        title: title,
+                        subtitle: model.description ?? '',
                       ),
-                      title: title,
-                      subtitle: model.description ?? '',
                     ),
-                  ),
-                );
-              },
-              childCount: data.length + 1,
+                  );
+                },
+                childCount: data.length + 1,
+              ),
             ),
-          ),
-          loading: () => const SliverFillRemaining(
-            child: Center(child: CircularProgressIndicator()),
-          ),
-          error: (err, stack) => SliverFillRemaining(
-            child: Center(child: Text(err.toString())),
-          ),
-        )
-      ],
+            loading: () => const SliverFillRemaining(
+              child: Center(child: CircularProgressIndicator()),
+            ),
+            error: (err, stack) => SliverFillRemaining(
+              child: Center(child: Text(err.toString())),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
