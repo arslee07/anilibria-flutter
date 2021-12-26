@@ -27,10 +27,10 @@ class App extends ConsumerWidget {
           color: Colors.white,
           foregroundColor: Colors.black,
         ),
-        chipTheme: const ChipThemeData(
-          backgroundColor: Colors.transparent,
-          shape: StadiumBorder(side: BorderSide()),
-        ),
+        chipTheme: Theme.of(context).chipTheme.copyWith(
+              backgroundColor: Colors.transparent,
+              shape: const StadiumBorder(side: BorderSide()),
+            ),
       ),
       dark: ThemeData(
         primarySwatch: Colors.grey,
