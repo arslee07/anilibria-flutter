@@ -184,12 +184,12 @@ packages:
     source: hosted
     version: "1.0.4"
   flutter_riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -207,13 +207,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.7"
-  hooks_riverpod:
-    dependency: "direct main"
-    description:
-      name: hooks_riverpod
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   html:
     dependency: transitive
     description:
@@ -263,13 +256,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.11"
-  material_floating_search_bar:
-    dependency: "direct main"
-    description:
-      name: material_floating_search_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.6"
   meta:
     dependency: transitive
     description:
@@ -402,14 +388,7 @@ packages:
       name: riverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2"
-  routemaster:
-    dependency: "direct main"
-    description:
-      name: routemaster
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.10.0-dev5"
+    version: "1.0.3"
   rxdart:
     dependency: transitive
     description:

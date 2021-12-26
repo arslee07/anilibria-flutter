@@ -3,11 +3,11 @@ import 'package:anilibria_app/features/updates_feed/components/title_item.dart';
 import 'package:anilibria_app/utils/always_disabled_focus_node.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class UpdatesFeedPage extends HookConsumerWidget {
+class UpdatesFeedPage extends ConsumerWidget {
   const UpdatesFeedPage({Key? key}) : super(key: key);
 
   @override

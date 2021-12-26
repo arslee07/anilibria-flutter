@@ -16,10 +16,7 @@ dependencies:
     flutter:
         sdk: flutter
     flutter_hooks: ^0.18.1
-    hooks_riverpod: ^1.0.2
-    material_floating_search_bar: ^0.3.6
     responsive_framework: ^0.1.5
-    routemaster: ^0.10.0-dev5
     transparent_image: ^2.0.0
     sliver_tools: ^0.2.5
     flick_video_player: ^0.4.0-dev.4
@@ -28,6 +25,7 @@ dependencies:
     chewie:
         git: https://github.com/brianegan/chewie
     go_router: ^2.5.7
+    flutter_riverpod: ^1.0.3
 
 dev_dependencies:
     flutter_lints: ^1.0.4

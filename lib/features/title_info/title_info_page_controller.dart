@@ -1,7 +1,7 @@
 import 'package:anilibria/anilibria.dart';
 import 'package:anilibria_app/utils/providers.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/widgets.dart' as flutter;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final titleInfoPageControllerProvider =
     ChangeNotifierProvider.family<TitleInfoPageController, int>(

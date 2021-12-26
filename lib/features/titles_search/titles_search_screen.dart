@@ -1,7 +1,7 @@
 import 'package:anilibria_app/features/titles_search/titles_search_controller.dart';
-import 'package:anilibria_app/features/updates_feed/components/search_tile.dart';
+import 'package:anilibria_app/features/titles_search/components/search_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TitlesSearchPage extends ConsumerWidget {
   const TitlesSearchPage({Key? key}) : super(key: key);
