@@ -1,12 +1,10 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:anilibria_app/utils/providers.dart';
+import 'package:anilibria_app/utils/route_maps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:routemaster/routemaster.dart';
 
 void main() {
-  Routemaster.setPathUrlStrategy();
   runApp(const ProviderScope(child: App()));
 }
 
@@ -46,8 +44,9 @@ class App extends ConsumerWidget {
           title: 'Anilibria',
           theme: theme,
           darkTheme: darkTheme,
-          routeInformationParser: ref.read(routerParserProvider),
-          routerDelegate: ref.read(routerDelegateProvider),
+          routeInformationParser:
+              ref.read(goRouterProvider).routeInformationParser,
+          routerDelegate: ref.read(goRouterProvider).routerDelegate,
           debugShowCheckedModeBanner: false,
           builder: (context, child) => ResponsiveWrapper.builder(
             ClampingScrollWrapper.builder(context, child!),

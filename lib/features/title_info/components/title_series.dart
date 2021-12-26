@@ -1,6 +1,6 @@
 import 'package:anilibria/anilibria.dart' as anilibria;
 import 'package:flutter/material.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 class TitleSeries extends StatelessWidget {
@@ -22,9 +22,8 @@ class TitleSeries extends StatelessWidget {
                   children: [
                     if ((serie.hls?.fhd ?? '').isNotEmpty)
                       TextButton(
-                        onPressed: () => Routemaster.of(context).push(
-                          '/player',
-                          queryParameters: {'q': serie.hls!.fhd!},
+                        onPressed: () => context.push(
+                          '/player?q=${Uri.encodeFull(serie.hls!.fhd!)}',
                         ),
                         child: const Text(
                           'FHD',
@@ -33,9 +32,8 @@ class TitleSeries extends StatelessWidget {
                       ),
                     if ((serie.hls?.hd ?? '').isNotEmpty)
                       TextButton(
-                        onPressed: () => Routemaster.of(context).push(
-                          '/player',
-                          queryParameters: {'q': serie.hls!.hd!},
+                        onPressed: () => context.push(
+                          '/player?q=${Uri.encodeFull(serie.hls!.hd!)}',
                         ),
                         child: const Text(
                           'HD',
@@ -44,9 +42,8 @@ class TitleSeries extends StatelessWidget {
                       ),
                     if ((serie.hls?.sd ?? '').isNotEmpty)
                       TextButton(
-                        onPressed: () => Routemaster.of(context).push(
-                          '/player',
-                          queryParameters: {'q': serie.hls!.sd!},
+                        onPressed: () => context.push(
+                          '/player?q=${Uri.encodeFull(serie.hls!.sd!)}',
                         ),
                         child: const Text(
                           'SD',

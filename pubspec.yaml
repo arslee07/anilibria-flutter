@@ -27,6 +27,7 @@ dependencies:
     video_player_web_hls: ^0.1.11+2
     chewie:
         git: https://github.com/brianegan/chewie
+    go_router: ^2.5.7
 
 dev_dependencies:
     flutter_lints: ^1.0.4

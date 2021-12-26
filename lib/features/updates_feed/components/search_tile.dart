@@ -2,7 +2,7 @@ import 'package:anilibria/anilibria.dart' as anilibria;
 import 'package:anilibria_app/utils/config.dart';
 import 'package:anilibria_app/utils/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:routemaster/routemaster.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class SearchTile extends StatelessWidget {
@@ -12,7 +12,7 @@ class SearchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Routemaster.of(context).push('/titles/${model.id!}'),
+      onTap: () => context.push('/titles/${model.id!}'),
       child: Container(
         color: Theme.of(context).listTileTheme.tileColor,
         child: Padding(

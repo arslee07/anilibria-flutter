@@ -3,8 +3,8 @@ import 'package:anilibria_app/features/updates_feed/components/title_item.dart';
 import 'package:anilibria_app/utils/always_disabled_focus_node.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:routemaster/routemaster.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class UpdatesFeedPage extends HookConsumerWidget {
@@ -40,7 +40,7 @@ class UpdatesFeedBody extends ConsumerWidget {
       slivers: [
         SliverAppBar(
           title: TextField(
-            onTap: () => Routemaster.of(context).push('/titles/search'),
+            onTap: () => context.push('/titles/search'),
             decoration: const InputDecoration(
               icon: Icon(Icons.search),
               hintText: 'Поиск по навзанию...',
@@ -81,8 +81,7 @@ class UpdatesFeedBody extends ConsumerWidget {
                   child: InkWell(
                     onTap: model.id == null
                         ? null
-                        : () =>
-                            Routemaster.of(context).push('/titles/${model.id}'),
+                        : () => context.push('/titles/${model.id}'),
                     child: TitleItem(
                       thumbnail: Hero(
                         tag: model.id!,
