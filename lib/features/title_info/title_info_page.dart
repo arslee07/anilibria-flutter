@@ -66,7 +66,6 @@ class TitleInfoPage extends ConsumerWidget {
                   padding: const EdgeInsets.all(2),
                   sliver: TitleSeries(data),
                 ),
-              const SliverFillRemaining(),
             ],
           );
         },
