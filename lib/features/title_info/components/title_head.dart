@@ -1,5 +1,5 @@
 import 'package:anilibria/anilibria.dart' as anilibria;
-import 'package:anilibria_app/utils/widgets.dart';
+import 'package:anilibria_app/utils/widgets/blank_space.dart';
 import 'package:flutter/material.dart';
 
 class TitleHead extends StatelessWidget {

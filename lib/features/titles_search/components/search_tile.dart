@@ -1,6 +1,6 @@
 import 'package:anilibria/anilibria.dart' as anilibria;
 import 'package:anilibria_app/utils/config.dart';
-import 'package:anilibria_app/utils/widgets.dart';
+import 'package:anilibria_app/utils/widgets/blank_space.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transparent_image/transparent_image.dart';

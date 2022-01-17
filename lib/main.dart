@@ -56,7 +56,6 @@ class App extends ConsumerWidget {
               ResponsiveBreakpoint.resize(800, name: DESKTOP),
               ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
             ],
-            maxWidth: 1280,
             background: Container(color: const Color(0xFFF5F5F5)),
           ),
         );

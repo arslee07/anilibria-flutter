@@ -23,7 +23,7 @@ dependencies:
     video_player_web_hls: ^0.1.11+2
     go_router: ^2.5.7
     flutter_riverpod: ^1.0.3
-    better_player: ^0.0.81
+    audio_video_progress_bar: ^0.10.0
 
 dev_dependencies:
     flutter_lints: ^1.0.4
