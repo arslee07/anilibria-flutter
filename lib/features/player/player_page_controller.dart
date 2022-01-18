@@ -4,13 +4,14 @@ import 'package:flutter/material.dart' as flutter;
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wakelock/wakelock.dart';
 
 final playerControllerProvider =
     ChangeNotifierProvider.family.autoDispose<PlayerController, String>(
   (ref, url) {
     final c = PlayerController(ref, url);
-    c.init();
-    ref.onDispose(c.dispose);
+    c.initState();
+    ref.onDispose(c.disposeState);
     return c;
   },
 );
@@ -29,21 +30,24 @@ class PlayerController extends flutter.ChangeNotifier {
           duration: const Duration(seconds: 5),
         );
 
-  void init() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  Future<void> initState() async {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: []);
     playerController.addListener(() => notifyListeners());
-    playerController.initialize().then((_) => playerController.play());
+    await playerController.initialize();
+    await playerController.play();
+    await Wakelock.enable();
   }
 
-  @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIMode(
+  Future<void> disposeState() async {
+    await SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: SystemUiOverlay.values,
     );
+    await Wakelock.disable();
     hideController.dispose();
     playerController.dispose();
-    super.dispose();
+    dispose();
   }
 
   void seekTo(Duration position) {

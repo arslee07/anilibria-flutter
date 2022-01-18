@@ -12,12 +12,10 @@ class AutoHideController extends ChangeNotifier {
         _isVisible = initialValue;
 
   void trigger() {
-    if (_isVisible) {
-      _debouncer.run(() {
-        _isVisible = false;
-        notifyListeners();
-      });
-    }
+    _debouncer.run(() {
+      _isVisible = false;
+      notifyListeners();
+    });
 
     _isVisible = !_isVisible;
     notifyListeners();

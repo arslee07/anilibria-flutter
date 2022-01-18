@@ -17,8 +17,8 @@ class App extends ConsumerWidget {
       light: ThemeData(
         primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.red,
-          accentColor: Colors.red,
+          primarySwatch: Colors.grey,
+          accentColor: Colors.grey,
           brightness: Brightness.light,
         ),
         appBarTheme: const AppBarTheme(

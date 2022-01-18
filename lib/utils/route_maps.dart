@@ -2,6 +2,7 @@ import 'package:anilibria_app/features/player/player_page.dart';
 import 'package:anilibria_app/features/title_info/title_info_page.dart';
 import 'package:anilibria_app/features/titles_search/titles_search_screen.dart';
 import 'package:anilibria_app/features/updates_feed/updates_feed_page.dart';
+import 'package:anilibria_app/utils/player_title_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,12 +12,6 @@ final goRouterProvider = Provider(
     GoRoute(
       path: '/',
       redirect: (_) => '/titles',
-    ),
-    GoRoute(
-      path: '/player',
-      pageBuilder: (_, state) => MaterialPage(
-        child: PlayerPage(state.queryParams['q']!),
-      ),
     ),
     GoRoute(
       path: '/titles',
@@ -35,6 +30,14 @@ final goRouterProvider = Provider(
           pageBuilder: (_, state) => MaterialPage(
             child: TitleInfoPage(int.parse(state.params['id']!)),
           ),
+          routes: [
+            GoRoute(
+              path: 'player',
+              pageBuilder: (_, state) => MaterialPage(
+                child: PlayerPage(state.extra! as PlayerTitleInfo),
+              ),
+            ),
+          ],
         ),
       ],
     ),

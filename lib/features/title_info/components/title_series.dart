@@ -1,4 +1,6 @@
 import 'package:anilibria/anilibria.dart' as anilibria;
+import 'package:anilibria_app/utils/get_title_name.dart';
+import 'package:anilibria_app/utils/player_title_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -23,7 +25,12 @@ class TitleSeries extends StatelessWidget {
                     if ((serie.hls?.fhd ?? '').isNotEmpty)
                       TextButton(
                         onPressed: () => context.push(
-                          '/player?q=${Uri.encodeFull(serie.hls!.fhd!)}',
+                          GoRouter.of(context).location + '/player',
+                          extra: PlayerTitleInfo(
+                            serie.hls!.fhd!,
+                            getTitleName(model),
+                            serie.serie!,
+                          ),
                         ),
                         child: const Text(
                           'FHD',
@@ -33,7 +40,12 @@ class TitleSeries extends StatelessWidget {
                     if ((serie.hls?.hd ?? '').isNotEmpty)
                       TextButton(
                         onPressed: () => context.push(
-                          '/player?q=${Uri.encodeFull(serie.hls!.hd!)}',
+                          GoRouter.of(context).location + '/player',
+                          extra: PlayerTitleInfo(
+                            serie.hls!.hd!,
+                            getTitleName(model),
+                            serie.serie!,
+                          ),
                         ),
                         child: const Text(
                           'HD',
@@ -43,7 +55,12 @@ class TitleSeries extends StatelessWidget {
                     if ((serie.hls?.sd ?? '').isNotEmpty)
                       TextButton(
                         onPressed: () => context.push(
-                          '/player?q=${Uri.encodeFull(serie.hls!.sd!)}',
+                          GoRouter.of(context).location + '/player',
+                          extra: PlayerTitleInfo(
+                            serie.hls!.sd!,
+                            getTitleName(model),
+                            serie.serie!,
+                          ),
                         ),
                         child: const Text(
                           'SD',
