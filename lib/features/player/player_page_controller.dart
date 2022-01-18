@@ -27,7 +27,7 @@ class PlayerController extends flutter.ChangeNotifier {
           kVideosUrl.toString() + url,
         ),
         hideController = AutoHideController(
-          duration: const Duration(seconds: 5),
+          duration: const Duration(seconds: 3),
         );
 
   Future<void> initState() async {

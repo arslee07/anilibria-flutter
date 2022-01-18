@@ -35,7 +35,7 @@ class PlayerPage extends ConsumerWidget {
               const Align(child: CircularProgressIndicator()),
             GestureDetector(
               behavior: HitTestBehavior.translucent,
-              onTap: controller.hideController.trigger,
+              onTap: controller.hideController.toggle,
               onDoubleTapDown: (details) {
                 print(details.globalPosition.dx);
                 if (details.globalPosition.dx <
@@ -45,6 +45,9 @@ class PlayerPage extends ConsumerWidget {
                   controller.forward();
                 }
               },
+            ),
+            MouseRegion(
+              onHover: (_) => controller.hideController.show(),
             ),
             AutoHide(
               switchDuration: const Duration(milliseconds: 250),
