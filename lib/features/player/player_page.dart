@@ -3,6 +3,7 @@ import 'package:anilibria_app/utils/player_title_info.dart';
 import 'package:anilibria_app/utils/widgets/auto_hide.dart';
 import 'package:anilibria_app/utils/widgets/blank_space.dart';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:video_player/video_player.dart';
@@ -46,9 +47,11 @@ class PlayerPage extends ConsumerWidget {
                 }
               },
             ),
-            MouseRegion(
-              onHover: (_) => controller.hideController.show(),
-            ),
+            if (defaultTargetPlatform != TargetPlatform.iOS &&
+                defaultTargetPlatform != TargetPlatform.android)
+              MouseRegion(
+                onHover: (_) => controller.hideController.show(),
+              ),
             AutoHide(
               switchDuration: const Duration(milliseconds: 250),
               controller: controller.hideController,
