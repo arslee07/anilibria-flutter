@@ -51,6 +51,7 @@ class PlayerPage extends ConsumerWidget {
                 defaultTargetPlatform != TargetPlatform.android)
               MouseRegion(
                 onHover: (_) => controller.hideController.show(),
+                onExit: (_) => controller.hideController.hide(),
               ),
             AutoHide(
               switchDuration: const Duration(milliseconds: 250),
