@@ -33,6 +33,8 @@ final goRouterProvider = Provider(
           routes: [
             GoRoute(
               path: 'player',
+              redirect: (s) =>
+                  s.extra == null ? '/titles/${s.params["id"]!}' : null,
               pageBuilder: (_, state) => MaterialPage(
                 child: PlayerPage(state.extra! as PlayerTitleInfo),
               ),
