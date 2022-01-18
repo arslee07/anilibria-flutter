@@ -22,29 +22,35 @@ class _TitleDescription extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                title,
-                maxLines: 4,
-                // overflow: TextOverflow.ellipsis,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              Material(
+                color: Colors.transparent,
+                child: Text(
+                  title,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
+                ),
               ),
               const Padding(padding: EdgeInsets.only(bottom: 6.0)),
               Expanded(
-                child: Text(
-                  subtitle,
-                  maxLines: ResponsiveValue(
-                    context,
-                    defaultValue: 4,
-                    valueWhen: const [
-                      Condition.largerThan(name: TABLET, value: 8),
-                      Condition.largerThan(name: DESKTOP, value: 10),
-                    ],
-                  ).value,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).textTheme.caption!.color,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Text(
+                    subtitle,
+                    maxLines: ResponsiveValue(
+                      context,
+                      defaultValue: 4,
+                      valueWhen: const [
+                        Condition.largerThan(name: TABLET, value: 8),
+                        Condition.largerThan(name: DESKTOP, value: 10),
+                      ],
+                    ).value,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).textTheme.caption!.color,
+                    ),
                   ),
                 ),
               ),
