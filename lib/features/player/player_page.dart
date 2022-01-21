@@ -52,6 +52,7 @@ class PlayerPage extends ConsumerWidget {
               MouseRegion(
                 onHover: (_) => controller.hideController.show(),
                 onExit: (_) => controller.hideController.hide(),
+                opaque: false,
               ),
             AutoHide(
               switchDuration: const Duration(milliseconds: 250),
