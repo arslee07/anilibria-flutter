@@ -47,13 +47,6 @@ class PlayerPage extends ConsumerWidget {
                 }
               },
             ),
-            if (defaultTargetPlatform != TargetPlatform.iOS &&
-                defaultTargetPlatform != TargetPlatform.android)
-              MouseRegion(
-                onHover: (_) => controller.hideController.show(),
-                onExit: (_) => controller.hideController.hide(),
-                opaque: false,
-              ),
             AutoHide(
               switchDuration: const Duration(milliseconds: 250),
               controller: controller.hideController,
@@ -158,6 +151,13 @@ class PlayerPage extends ConsumerWidget {
                 ],
               ),
             ),
+            if (defaultTargetPlatform != TargetPlatform.iOS &&
+                defaultTargetPlatform != TargetPlatform.android)
+              MouseRegion(
+                onHover: (_) => controller.hideController.show(),
+                onExit: (_) => controller.hideController.hide(),
+                opaque: false,
+              ),
           ],
         ),
       ),
