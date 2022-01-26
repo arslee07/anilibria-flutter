@@ -35,7 +35,8 @@ class TitleInfoPage extends ConsumerWidget {
                   background: Hero(
                     tag: id,
                     child: FadeInImage.memoryNetwork(
-                      image: kStaticUrl.toString() + (data.poster?.url ?? ''),
+                      image: kStaticUrl.toString() +
+                          (data.posters?.original?.url ?? ''),
                       placeholder: kTransparentImage,
                       fit: BoxFit.cover,
                     ),

@@ -25,7 +25,8 @@ class SearchTile extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(4),
                   child: FadeInImage.memoryNetwork(
-                    image: kStaticUrl.toString() + (model.poster?.url ?? ''),
+                    image: kStaticUrl.toString() +
+                        (model.posters?.original?.url ?? ''),
                     placeholder: kTransparentImage,
                     fit: BoxFit.cover,
                   ),

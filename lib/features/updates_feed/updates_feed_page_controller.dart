@@ -33,7 +33,7 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
               'id',
               'names',
               'description',
-              'poster',
+              'posters',
               'player.series.string',
             ],
             descriptionType: DescriptionType.noViewOrder);
@@ -49,7 +49,7 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
         'id',
         'names',
         'description',
-        'poster',
+        'posters',
         'player.series.string',
       ],
       limit: 15,

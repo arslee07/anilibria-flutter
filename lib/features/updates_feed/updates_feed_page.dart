@@ -71,7 +71,7 @@ class UpdatesFeedBody extends ConsumerWidget {
 
                   final model = data[index];
                   final names = model.names;
-                  final poster = model.poster;
+                  final poster = model.posters?.original;
                   final series = model.player?.series?.string;
                   final title = (names?.ru ??
                           names?.alternative ??
