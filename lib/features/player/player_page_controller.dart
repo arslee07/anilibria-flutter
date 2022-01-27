@@ -34,6 +34,7 @@ class PlayerController extends flutter.ChangeNotifier {
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: []);
     playerController.addListener(() => notifyListeners());
+    hideController.addListener(() => notifyListeners());
     await playerController.initialize();
     await playerController.play();
     await Wakelock.enable();
