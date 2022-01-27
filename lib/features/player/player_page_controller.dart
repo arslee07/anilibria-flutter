@@ -31,10 +31,14 @@ class PlayerController extends flutter.ChangeNotifier {
         );
 
   Future<void> initState() async {
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: []);
+    await SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [],
+    );
     playerController.addListener(() => notifyListeners());
-    hideController.addListener(() => notifyListeners());
+    hideController
+      ..addListener(() => notifyListeners())
+      ..addListener(switchUiMode);
     await playerController.initialize();
     await playerController.play();
     await Wakelock.enable();
@@ -49,6 +53,20 @@ class PlayerController extends flutter.ChangeNotifier {
     hideController.dispose();
     playerController.dispose();
     dispose();
+  }
+
+  void switchUiMode() {
+    if (hideController.isVisible) {
+      SystemChrome.setEnabledSystemUIMode(
+        SystemUiMode.manual,
+        overlays: SystemUiOverlay.values,
+      );
+    } else {
+      SystemChrome.setEnabledSystemUIMode(
+        SystemUiMode.manual,
+        overlays: [],
+      );
+    }
   }
 
   void seekTo(Duration position) {
