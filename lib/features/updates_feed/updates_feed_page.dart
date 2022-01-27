@@ -88,10 +88,16 @@ class UpdatesFeedBody extends ConsumerWidget {
                       child: TitleItem(
                         thumbnail: Hero(
                           tag: model.id!,
-                          child: FadeInImage.memoryNetwork(
-                            image: kStaticUrl.toString() + (poster?.url ?? ''),
-                            placeholder: kTransparentImage,
-                            fit: BoxFit.cover,
+                          child: Stack(
+                            children: [
+                              Container(color: Colors.black12),
+                              FadeInImage.memoryNetwork(
+                                image:
+                                    kStaticUrl.toString() + (poster?.url ?? ''),
+                                placeholder: kTransparentImage,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
                           ),
                         ),
                         title: title,
