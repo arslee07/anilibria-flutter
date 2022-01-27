@@ -45,24 +45,24 @@ class PlayerController extends flutter.ChangeNotifier {
   }
 
   Future<void> disposeState() async {
+    super.dispose();
+    hideController.dispose();
+    playerController.dispose();
     await SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: SystemUiOverlay.values,
     );
     await Wakelock.disable();
-    hideController.dispose();
-    playerController.dispose();
-    dispose();
   }
 
-  void switchUiMode() {
+  Future<void> switchUiMode() async {
     if (hideController.isVisible) {
-      SystemChrome.setEnabledSystemUIMode(
+      await SystemChrome.setEnabledSystemUIMode(
         SystemUiMode.manual,
         overlays: SystemUiOverlay.values,
       );
     } else {
-      SystemChrome.setEnabledSystemUIMode(
+      await SystemChrome.setEnabledSystemUIMode(
         SystemUiMode.manual,
         overlays: [],
       );
