@@ -33,7 +33,7 @@ class TitleHead extends StatelessWidget {
                 BlankSpace.right(8),
                 Chip(
                   avatar: const Icon(Icons.star_border),
-                  label: Text(model.inFavorites!.toString()),
+                  label: Text((model.inFavorites ?? 0).toString()),
                 )
               ],
             ),
