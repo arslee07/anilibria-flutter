@@ -21,6 +21,16 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
   UpdatesFeedPageController(this._ref)
       : titles = const AsyncValue.loading(),
         scrollController = flutter.ScrollController() {
+    scrollController.addListener(() {
+      if (scrollController.position.extentAfter < 200) {
+        if (!isLoadingMore) {
+          isLoadingMore = true;
+          fetchMore()
+              .catchError((err, stack) => print(stack))
+              .whenComplete(() => isLoadingMore = false);
+        }
+      }
+    });
     fetch();
   }
 
