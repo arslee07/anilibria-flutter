@@ -1,6 +1,7 @@
 import 'package:anilibria_app/features/updates_feed/updates_feed_page_controller.dart';
 import 'package:anilibria_app/features/updates_feed/components/title_item.dart';
 import 'package:anilibria_app/utils/config.dart';
+import 'package:anilibria_app/utils/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +18,18 @@ class UpdatesFeedPage extends ConsumerWidget {
           icon: const Icon(Icons.search),
           onPressed: () => context.push('/titles/search'),
           tooltip: 'Поиск по названию',
+        ),
+        PopupMenuButton(
+          itemBuilder: (BuildContext context) => [
+            PopupMenuItem(
+              onTap: () {
+                ref.read(anilibriaProvider).getRandomTitle(filter: ['id']).then(
+                  (v) => context.push('/titles/${v.id!}'),
+                );
+              },
+              child: const Text('Случайный релиз'),
+            ),
+          ],
         ),
       ]),
       body: Column(
