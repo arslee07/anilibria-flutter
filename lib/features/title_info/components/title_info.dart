@@ -7,33 +7,28 @@ class TitleInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (model.season?.year != null)
-              _InfoItem('Год: ', model.season!.year!.toString()),
-            if (model.status?.string != null)
-              _InfoItem('Статус: ', model.status!.string!),
-            if (model.type?.fullString != null)
-              _InfoItem('Тип: ', model.type!.fullString!),
-            if ((model.genres ?? []).isNotEmpty)
-              _InfoItem('Жанры: ', model.genres!.join(', ')),
-            if ((model.team?.voice ?? []).isNotEmpty)
-              _InfoItem('Озвучка: ', model.team!.voice!.join(', ')),
-            if ((model.team?.translator ?? []).isNotEmpty)
-              _InfoItem('Перевод: ', model.team!.translator!.join(', ')),
-            if ((model.team?.editing ?? []).isNotEmpty)
-              _InfoItem('Редактирование: ', model.team!.editing!.join(', ')),
-            if ((model.team?.timing ?? []).isNotEmpty)
-              _InfoItem('Тайминг: ', model.team!.timing!.join(', ')),
-            if ((model.team?.decor ?? []).isNotEmpty)
-              _InfoItem('Декор: ', model.team!.decor!.join(', ')),
-          ],
-        ),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (model.season?.year != null)
+          _InfoItem('Год: ', model.season!.year!.toString()),
+        if (model.status?.string != null)
+          _InfoItem('Статус: ', model.status!.string!),
+        if (model.type?.fullString != null)
+          _InfoItem('Тип: ', model.type!.fullString!),
+        if ((model.genres ?? []).isNotEmpty)
+          _InfoItem('Жанры: ', model.genres!.join(', ')),
+        if ((model.team?.voice ?? []).isNotEmpty)
+          _InfoItem('Озвучка: ', model.team!.voice!.join(', ')),
+        if ((model.team?.translator ?? []).isNotEmpty)
+          _InfoItem('Перевод: ', model.team!.translator!.join(', ')),
+        if ((model.team?.editing ?? []).isNotEmpty)
+          _InfoItem('Редактирование: ', model.team!.editing!.join(', ')),
+        if ((model.team?.timing ?? []).isNotEmpty)
+          _InfoItem('Тайминг: ', model.team!.timing!.join(', ')),
+        if ((model.team?.decor ?? []).isNotEmpty)
+          _InfoItem('Декор: ', model.team!.decor!.join(', ')),
+      ],
     );
   }
 }

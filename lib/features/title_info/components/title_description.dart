@@ -8,20 +8,15 @@ class TitleDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: ExpandableText(
-          description,
-          expandText: 'развернуть',
-          collapseText: 'свернуть',
-          maxLines: 8,
-          animation: true,
-          animationDuration: const Duration(milliseconds: 500),
-          collapseOnTextTap: !kIsWeb,
-          style: Theme.of(context).textTheme.bodyText2,
-        ),
-      ),
+    return ExpandableText(
+      description,
+      expandText: 'развернуть',
+      collapseText: 'свернуть',
+      maxLines: 8,
+      animation: true,
+      animationDuration: const Duration(milliseconds: 500),
+      collapseOnTextTap: !kIsWeb,
+      style: Theme.of(context).textTheme.bodyText2,
     );
   }
 }
