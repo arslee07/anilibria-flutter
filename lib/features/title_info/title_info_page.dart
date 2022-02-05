@@ -48,7 +48,7 @@ class TitleInfoPage extends ConsumerWidget {
                 children: [
                   const SliverPositioned.fill(child: Card()),
                   SliverPadding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(16),
                     sliver: SliverToBoxAdapter(
                       child: TitleHead(data),
                     ),
@@ -59,7 +59,7 @@ class TitleInfoPage extends ConsumerWidget {
                 children: [
                   const SliverPositioned.fill(child: Card()),
                   SliverPadding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(16),
                     sliver: SliverToBoxAdapter(
                       child: TitleInfo(data),
                     ),
@@ -71,7 +71,7 @@ class TitleInfoPage extends ConsumerWidget {
                   children: [
                     const SliverPositioned.fill(child: Card()),
                     SliverPadding(
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(16),
                       sliver: SliverToBoxAdapter(
                         child: TitleDescription(data.description!),
                       ),

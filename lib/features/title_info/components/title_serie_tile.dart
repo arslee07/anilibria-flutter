@@ -62,8 +62,6 @@ class TitleSerieTile extends StatelessWidget {
             ),
         ],
       ),
-      tileColor:
-          serie.serie! % 2 == 0 ? const Color.fromARGB(128, 0, 0, 0) : null,
     );
   }
 }
