@@ -37,15 +37,6 @@ class PlayerPage extends ConsumerWidget {
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: controller.hideController.toggle,
-              onDoubleTapDown: (details) {
-                print(details.globalPosition.dx);
-                if (details.globalPosition.dx <
-                    MediaQuery.of(context).size.width) {
-                  controller.back();
-                } else {
-                  controller.forward();
-                }
-              },
             ),
             AutoHide(
               switchDuration: const Duration(milliseconds: 250),
@@ -135,6 +126,11 @@ class PlayerPage extends ConsumerWidget {
                       child: ProgressBar(
                         progress: controller.playerController.value.position,
                         total: controller.playerController.value.duration,
+                        onDragUpdate: (_) {
+                          if (controller.hideController.isVisible) {
+                            controller.hideController.show();
+                          }
+                        },
                         thumbRadius: 8,
                         timeLabelTextStyle:
                             const TextStyle(color: Colors.white),
