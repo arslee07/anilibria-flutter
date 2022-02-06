@@ -19,6 +19,9 @@ final playerControllerProvider =
 class PlayerController extends flutter.ChangeNotifier {
   final Ref _ref;
 
+  // a workaround, i dunno why it sitll calls funcs when it's disposed
+  bool _disposed = false;
+
   final VideoPlayerController playerController;
   final AutoHideController hideController;
 
@@ -31,42 +34,49 @@ class PlayerController extends flutter.ChangeNotifier {
         );
 
   Future<void> initState() async {
+    playerController.addListener(playerCallback);
+    hideController.addListener(hideCallback);
+
     await SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: [],
     );
-    playerController.addListener(() => notifyListeners());
-    hideController
-      ..addListener(() => notifyListeners())
-      ..addListener(switchUiMode);
+
     await playerController.initialize();
     await playerController.play();
     await Wakelock.enable();
   }
 
   Future<void> disposeState() async {
-    super.dispose();
-    hideController.dispose();
-    playerController.dispose();
+    _disposed = true;
+
     await SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: SystemUiOverlay.values,
     );
     await Wakelock.disable();
+
+    playerController.dispose();
   }
 
-  Future<void> switchUiMode() async {
+  Future<void> hideCallback() async {
+    if (_disposed) return;
+
+    notifyListeners();
     if (hideController.isVisible) {
       await SystemChrome.setEnabledSystemUIMode(
         SystemUiMode.manual,
         overlays: SystemUiOverlay.values,
       );
     } else {
-      await SystemChrome.setEnabledSystemUIMode(
-        SystemUiMode.manual,
-        overlays: [],
-      );
+      await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     }
+  }
+
+  Future<void> playerCallback() async {
+    if (_disposed) return;
+
+    notifyListeners();
   }
 
   void seekTo(Duration position) {
