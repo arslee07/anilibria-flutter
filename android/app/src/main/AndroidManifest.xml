@@ -2,7 +2,7 @@
     package="dev.arslee.anilibria">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="anilibria"
+        android:label="AniLibria"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
