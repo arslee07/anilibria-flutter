@@ -14,7 +14,7 @@ packages:
       name: anilibria
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.2"
+    version: "0.6.2"
   async:
     dependency: transitive
     description:
@@ -436,13 +436,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  simple_icons:
-    dependency: "direct main"
-    description:
-      name: simple_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.1.0"
   sky_engine:
     dependency: transitive
     description: flutter

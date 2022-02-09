@@ -10,7 +10,7 @@ environment:
 
 dependencies:
     adaptive_theme: ^2.3.0
-    anilibria: ^0.5.0
+    anilibria: ^0.6.0
     expandable_text: ^2.2.0
     fancy_shimmer_image: ^2.0.1+1
     flutter:

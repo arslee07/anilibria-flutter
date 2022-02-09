@@ -1,7 +1,7 @@
+import 'package:anilibria_app/features/home/home_page.dart';
 import 'package:anilibria_app/features/player/player_page.dart';
 import 'package:anilibria_app/features/title_info/title_info_page.dart';
 import 'package:anilibria_app/features/titles_search/titles_search_screen.dart';
-import 'package:anilibria_app/features/updates_feed/updates_feed_page.dart';
 import 'package:anilibria_app/utils/player_title_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,16 +14,21 @@ final goRouterProvider = Provider(
       redirect: (_) => '/titles',
     ),
     GoRoute(
+      path: '/youtube',
+      pageBuilder: (_, __) => const MaterialPage(child: HomePage()),
+    ),
+    GoRoute(
       path: '/titles',
-      pageBuilder: (_, __) => const MaterialPage(child: UpdatesFeedPage()),
+      pageBuilder: (_, __) => const MaterialPage(child: HomePage()),
       routes: [
         GoRoute(
           path: 'search',
           pageBuilder: (_, __) => CustomTransitionPage(
-              child: const TitlesSearchPage(),
-              transitionsBuilder: (_, animation, __, child) =>
-                  FadeTransition(opacity: animation, child: child),
-              transitionDuration: const Duration(milliseconds: 150)),
+            child: const TitlesSearchPage(),
+            transitionsBuilder: (_, animation, __, child) =>
+                FadeTransition(opacity: animation, child: child),
+            transitionDuration: const Duration(milliseconds: 150),
+          ),
         ),
         GoRoute(
           path: r':id(\d+)',
