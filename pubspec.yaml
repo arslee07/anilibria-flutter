@@ -24,6 +24,7 @@ dependencies:
     flutter_riverpod: ^1.0.3
     audio_video_progress_bar: ^0.10.0
     wakelock: ^0.6.0+1
+    font_awesome_flutter: ^9.2.0
 
 dev_dependencies:
     flutter_lints: ^1.0.4
