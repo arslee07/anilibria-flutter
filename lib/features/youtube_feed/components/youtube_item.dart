@@ -23,7 +23,6 @@ class YoutubeItem extends StatelessWidget {
           valueWhen: const [
             Condition.largerThan(name: MOBILE, value: 1920 / 16),
             Condition.largerThan(name: TABLET, value: 1920 / 14),
-            // Condition.largerThan(name: DESKTOP, value: 550 / 2),
           ],
         ).value,
         child: Row(

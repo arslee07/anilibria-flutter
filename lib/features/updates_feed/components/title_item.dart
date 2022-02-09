@@ -87,7 +87,6 @@ class TitleItem extends StatelessWidget {
           valueWhen: const [
             Condition.largerThan(name: MOBILE, value: 550 / 3.5),
             Condition.largerThan(name: TABLET, value: 550 / 3),
-            Condition.largerThan(name: DESKTOP, value: 550 / 2),
           ],
         ).value,
         child: Row(
