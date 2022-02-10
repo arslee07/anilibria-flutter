@@ -1,6 +1,7 @@
 import 'package:anilibria/anilibria.dart';
 import 'package:anilibria_app/utils/widgets/blank_space.dart';
 import 'package:flutter/material.dart';
+import 'package:html_unescape/html_unescape.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -49,19 +50,20 @@ class YoutubeItem extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 2.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(12.0, 0.0, 0.0, 0.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      video.title ?? 'Без названия',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                    Flexible(
+                      child: Text(
+                        HtmlUnescape().convert(video.title ?? 'Без названия'),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                     BlankSpace.bottom(6),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Icon(Icons.visibility, size: 14),
                         BlankSpace.right(4),
