@@ -10,7 +10,7 @@ environment:
 
 dependencies:
     adaptive_theme: ^2.3.0
-    anilibria: ^0.5.0
+    anilibria: ^0.6.0
     expandable_text: ^2.2.0
     fancy_shimmer_image: ^2.0.1+1
     flutter:
@@ -24,6 +24,9 @@ dependencies:
     flutter_riverpod: ^1.0.3
     audio_video_progress_bar: ^0.10.0
     wakelock: ^0.6.0+1
+    font_awesome_flutter: ^9.2.0
+    url_launcher: ^6.0.18
+    html_unescape: ^2.0.0
 
 dev_dependencies:
     flutter_lints: ^1.0.4

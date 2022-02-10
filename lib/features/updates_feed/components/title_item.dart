@@ -29,7 +29,9 @@ class _TitleDescription extends StatelessWidget {
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 18),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
               ),
               const Padding(padding: EdgeInsets.only(bottom: 6.0)),
@@ -85,7 +87,6 @@ class TitleItem extends StatelessWidget {
           valueWhen: const [
             Condition.largerThan(name: MOBILE, value: 550 / 3.5),
             Condition.largerThan(name: TABLET, value: 550 / 3),
-            Condition.largerThan(name: DESKTOP, value: 550 / 2),
           ],
         ).value,
         child: Row(
