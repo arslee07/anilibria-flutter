@@ -7,26 +7,16 @@ import 'package:go_router/go_router.dart';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  int _getIndex(String loc) {
-    switch (loc) {
-      case '/titles':
-        return 0;
-      case '/youtube':
-        return 1;
-      default:
-        return 0;
-    }
+  static int _getIndex(String loc) {
+    if (loc == '/titles') return 0;
+    if (loc == '/youtube') return 1;
+    return 0;
   }
 
-  String _getRoute(int index) {
-    switch (index) {
-      case 0:
-        return '/titles';
-      case 1:
-        return '/youtube';
-      default:
-        return '/titles';
-    }
+  static String _getRoute(int index) {
+    if (index == 0) return '/titles';
+    if (index == 1) return '/youtube';
+    return '/titles';
   }
 
   @override
