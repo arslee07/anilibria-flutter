@@ -18,7 +18,7 @@ class App extends ConsumerWidget {
         primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.grey,
-          accentColor: Colors.grey,
+          accentColor: Colors.black,
           brightness: Brightness.light,
         ),
         appBarTheme: const AppBarTheme(
@@ -34,7 +34,7 @@ class App extends ConsumerWidget {
         primarySwatch: Colors.grey,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.grey,
-          accentColor: Colors.grey,
+          accentColor: Colors.white,
           brightness: Brightness.dark,
         ),
       ),
@@ -54,7 +54,7 @@ class App extends ConsumerWidget {
               ResponsiveBreakpoint.resize(350, name: MOBILE),
               ResponsiveBreakpoint.resize(600, name: TABLET),
               ResponsiveBreakpoint.resize(800, name: DESKTOP),
-              ResponsiveBreakpoint.autoScale(1700, name: 'XL'),
+              ResponsiveBreakpoint.resize(1700, name: 'XL'),
             ],
             background: Container(color: const Color(0xFFF5F5F5)),
           ),
