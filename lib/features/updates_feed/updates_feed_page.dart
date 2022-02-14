@@ -20,6 +20,7 @@ class UpdatesFeedPage extends ConsumerWidget {
           tooltip: 'Поиск по названию',
         ),
         PopupMenuButton(
+          tooltip: 'Меню',
           itemBuilder: (BuildContext context) => [
             PopupMenuItem(
               onTap: () {
