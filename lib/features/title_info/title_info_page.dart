@@ -2,7 +2,7 @@ import 'package:anilibria_app/features/title_info/components/title_description.d
 import 'package:anilibria_app/features/title_info/components/title_head.dart';
 import 'package:anilibria_app/features/title_info/components/title_info.dart';
 import 'package:anilibria_app/features/title_info/components/title_serie_tile.dart';
-import 'package:anilibria_app/features/title_info/components/title_torrents.dart';
+import 'package:anilibria_app/features/title_info/components/title_torrent_tile.dart';
 import 'package:anilibria_app/features/title_info/title_info_page_controller.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +88,7 @@ class TitleInfoPage extends ConsumerWidget {
                         (context, index) {
                           final torrent =
                               data.torrents!.list!.reversed.elementAt(index);
-                          return TorrentTile(torrent);
+                          return TitleTorrentTile(torrent);
                         },
                         childCount: data.torrents!.list!.length,
                       ),
