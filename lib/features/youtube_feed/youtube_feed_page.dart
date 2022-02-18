@@ -28,13 +28,7 @@ class YoutubeFeedPage extends ConsumerWidget {
                 );
               }
 
-              final video = data[index];
-              return InkWell(
-                onTap: video.youtubeId == null
-                    ? null
-                    : () => launch(kYoutubeUrl.toString() + video.youtubeId!),
-                child: YoutubeItem(video: video),
-              );
+              return YoutubeItem(video: data[index]);
             },
             itemCount: data.length + 1,
           ),

@@ -10,35 +10,39 @@ class TitleTorrentTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () {
-        launch(kStaticUrl.toString() + torrent.url!);
-      },
-      title: Text(
-        'Серия ${torrent.series?.string ?? "N/A"} (${torrent.quality?.string ?? "N/A"})',
-      ),
-      trailing: const Icon(Icons.download),
-      subtitle: Row(
-        children: [
-          Text(
-            ((torrent.totalSize ?? 0) / 1024 / 1024 / 1024).toStringAsFixed(1) +
-                ' GB',
-          ),
-          BlankSpace.right(6),
-          const Icon(
-            Icons.file_upload_outlined,
-            size: 16,
-            color: Colors.green,
-          ),
-          Text((torrent.seeders ?? 0).toString()),
-          BlankSpace.right(6),
-          const Icon(
-            Icons.file_download_outlined,
-            size: 16,
-            color: Colors.red,
-          ),
-          Text((torrent.leechers ?? 0).toString()),
-        ],
+    return Material(
+      color: Colors.transparent,
+      child: ListTile(
+        onTap: () {
+          launch(kStaticUrl.toString() + torrent.url!);
+        },
+        title: Text(
+          'Серия ${torrent.series?.string ?? "N/A"} (${torrent.quality?.string ?? "N/A"})',
+        ),
+        trailing: const Icon(Icons.download),
+        subtitle: Row(
+          children: [
+            Text(
+              ((torrent.totalSize ?? 0) / 1024 / 1024 / 1024)
+                      .toStringAsFixed(1) +
+                  ' GB',
+            ),
+            BlankSpace.right(6),
+            const Icon(
+              Icons.file_upload_outlined,
+              size: 16,
+              color: Colors.green,
+            ),
+            Text((torrent.seeders ?? 0).toString()),
+            BlankSpace.right(6),
+            const Icon(
+              Icons.file_download_outlined,
+              size: 16,
+              color: Colors.red,
+            ),
+            Text((torrent.leechers ?? 0).toString()),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,12 @@
+import 'package:anilibria_app/utils/config.dart';
+import 'package:anilibria_app/utils/get_title_name.dart';
+import 'package:anilibria_app/utils/widgets/blank_space.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_value.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:anilibria/anilibria.dart' as anilibria;
+import 'package:transparent_image/transparent_image.dart';
 
 class _TitleDescription extends StatelessWidget {
   const _TitleDescription({
@@ -30,11 +36,11 @@ class _TitleDescription extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                 ),
               ),
-              const Padding(padding: EdgeInsets.only(bottom: 6.0)),
+              BlankSpace.bottom(4),
               Expanded(
                 child: Material(
                   color: Colors.transparent,
@@ -65,50 +71,71 @@ class _TitleDescription extends StatelessWidget {
 }
 
 class TitleItem extends StatelessWidget {
-  const TitleItem({
-    Key? key,
-    required this.thumbnail,
-    required this.title,
-    required this.subtitle,
-  }) : super(key: key);
+  final anilibria.Title title;
 
-  final Widget thumbnail;
-  final String title;
-  final String subtitle;
+  const TitleItem(
+    this.title, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-      child: SizedBox(
-        height: ResponsiveValue(
-          context,
-          defaultValue: 550 / 4,
-          valueWhen: const [
-            Condition.largerThan(name: MOBILE, value: 550 / 3.5),
-            Condition.largerThan(name: TABLET, value: 550 / 3),
-          ],
-        ).value,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            AspectRatio(
-              aspectRatio: 7.0 / 10.0,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: thumbnail,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 2.0, 0.0),
-                child: _TitleDescription(
-                  title: title,
-                  subtitle: subtitle,
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      clipBehavior: Clip.antiAlias,
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+      child: InkWell(
+        onTap:
+            title.id == null ? null : () => context.push('/titles/${title.id}'),
+        child: SizedBox(
+          height: ResponsiveValue(
+            context,
+            defaultValue: 550 / 3.75,
+            valueWhen: const [
+              Condition.largerThan(name: MOBILE, value: 550 / 3.5),
+              Condition.largerThan(name: TABLET, value: 550 / 3),
+            ],
+          ).value,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 7.0 / 10.0,
+                child: Hero(
+                  tag: title.id!,
+                  child: Stack(
+                    children: [
+                      Container(color: Colors.black12),
+                      FadeInImage.memoryNetwork(
+                        image: kStaticUrl.toString() +
+                            (title.posters?.original?.url ?? ''),
+                        placeholder: kTransparentImage,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            )
-          ],
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8.0,
+                    horizontal: 12.0,
+                  ),
+                  child: _TitleDescription(
+                    title: getTitleName(title) +
+                        (title.player?.series?.string == null ||
+                                title.player?.series?.string == '1-1'
+                            ? ''
+                            : ' (${title.player?.series?.string})'),
+                    subtitle: title.description ?? '',
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
