@@ -5,10 +5,14 @@ import 'package:anilibria_app/features/title_info/components/title_serie_tile.da
 import 'package:anilibria_app/features/title_info/components/title_torrent_tile.dart';
 import 'package:anilibria_app/features/title_info/title_info_page_controller.dart';
 import 'package:anilibria_app/utils/config.dart';
+import 'package:anilibria_app/utils/widgets/blank_space.dart';
+import 'package:anilibria_app/utils/widgets/section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+Widget _buildDivider() => SliverToBoxAdapter(child: BlankSpace.bottom(8));
 
 class TitleInfoPage extends ConsumerWidget {
   final int id;
@@ -47,7 +51,7 @@ class TitleInfoPage extends ConsumerWidget {
               ),
               SliverStack(
                 children: [
-                  const SliverPositioned.fill(child: Card()),
+                  const SliverPositioned.fill(child: Section()),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
                     sliver: SliverToBoxAdapter(
@@ -56,9 +60,10 @@ class TitleInfoPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              _buildDivider(),
               SliverStack(
                 children: [
-                  const SliverPositioned.fill(child: Card()),
+                  const SliverPositioned.fill(child: Section()),
                   SliverPadding(
                     padding: const EdgeInsets.all(16),
                     sliver: SliverToBoxAdapter(
@@ -67,10 +72,11 @@ class TitleInfoPage extends ConsumerWidget {
                   ),
                 ],
               ),
-              if (data.description != null)
+              if (data.description != null) ...[
+                _buildDivider(),
                 SliverStack(
                   children: [
-                    const SliverPositioned.fill(child: Card()),
+                    const SliverPositioned.fill(child: Section()),
                     SliverPadding(
                       padding: const EdgeInsets.all(16),
                       sliver: SliverToBoxAdapter(
@@ -79,10 +85,12 @@ class TitleInfoPage extends ConsumerWidget {
                     ),
                   ],
                 ),
-              if (data.torrents?.list != null)
+              ],
+              if (data.torrents?.list != null) ...[
+                _buildDivider(),
                 SliverStack(
                   children: [
-                    const SliverPositioned.fill(child: Card()),
+                    const SliverPositioned.fill(child: Section()),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
@@ -95,10 +103,12 @@ class TitleInfoPage extends ConsumerWidget {
                     ),
                   ],
                 ),
-              if (data.player != null)
+              ],
+              if (data.player != null) ...[
+                _buildDivider(),
                 SliverStack(
                   children: [
-                    const SliverPositioned.fill(child: Card()),
+                    const SliverPositioned.fill(child: Section()),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
@@ -111,6 +121,7 @@ class TitleInfoPage extends ConsumerWidget {
                     ),
                   ],
                 ),
+              ],
             ],
           );
         },
