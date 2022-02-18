@@ -16,6 +16,7 @@ class TitleDescription extends StatelessWidget {
       animation: true,
       animationDuration: const Duration(milliseconds: 500),
       collapseOnTextTap: !kIsWeb,
+      linkStyle: const TextStyle(fontWeight: FontWeight.bold),
       style: Theme.of(context).textTheme.bodyText2,
     );
   }
