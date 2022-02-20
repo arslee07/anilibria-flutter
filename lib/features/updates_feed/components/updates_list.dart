@@ -1,7 +1,6 @@
 import 'package:anilibria_app/features/updates_feed/components/title_item.dart';
 import 'package:flutter/material.dart';
 import 'package:anilibria/anilibria.dart' as anilibria;
-import 'package:go_router/go_router.dart';
 
 class UpdatesList extends StatelessWidget {
   final List<anilibria.Title> titles;
@@ -22,12 +21,7 @@ class UpdatesList extends StatelessWidget {
 
           final model = titles[index];
 
-          return InkWell(
-            onTap: model.id == null
-                ? null
-                : () => context.push('/titles/${model.id}'),
-            child: TitleItem(model),
-          );
+          return TitleItem(model);
         },
         childCount: titles.length + 1,
       ),
