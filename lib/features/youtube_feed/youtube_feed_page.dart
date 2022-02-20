@@ -1,9 +1,7 @@
 import 'package:anilibria_app/features/youtube_feed/components/youtube_item.dart';
 import 'package:anilibria_app/features/youtube_feed/youtube_feed_page_controller.dart';
-import 'package:anilibria_app/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class YoutubeFeedPage extends ConsumerWidget {
   const YoutubeFeedPage({Key? key}) : super(key: key);
