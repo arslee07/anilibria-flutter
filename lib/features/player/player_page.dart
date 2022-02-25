@@ -16,6 +16,12 @@ class PlayerPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(playerControllerProvider(info.url));
 
+    final showSkip = info.skips?.opening != null &&
+        info.skips!.opening!.start <=
+            controller.playerController.value.position.inSeconds &&
+        info.skips!.opening!.stop >
+            controller.playerController.value.position.inSeconds;
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
@@ -123,24 +129,46 @@ class PlayerPage extends ConsumerWidget {
                     alignment: Alignment.bottomCenter,
                     child: Padding(
                       padding: const EdgeInsets.all(24),
-                      child: ProgressBar(
-                        progress: controller.playerController.value.position,
-                        total: controller.playerController.value.duration,
-                        onDragUpdate: (_) {
-                          if (controller.hideController.isVisible) {
-                            controller.hideController.show();
-                          }
-                        },
-                        thumbRadius: 8,
-                        timeLabelTextStyle:
-                            const TextStyle(color: Colors.white),
-                        buffered: controller
-                                .playerController.value.buffered.isNotEmpty
-                            ? controller
-                                .playerController.value.buffered.last.end
-                            : null,
-                        timeLabelPadding: 4,
-                        onSeek: controller.seekTo,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          if (showSkip) ...[
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: ElevatedButton(
+                                child: const Text('Пропустить опенинг'),
+                                onPressed: () {
+                                  controller.seekTo(
+                                    Duration(
+                                      seconds: info.skips!.opening!.stop,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            BlankSpace.bottom(8),
+                          ],
+                          ProgressBar(
+                            progress:
+                                controller.playerController.value.position,
+                            total: controller.playerController.value.duration,
+                            onDragUpdate: (_) {
+                              if (controller.hideController.isVisible) {
+                                controller.hideController.show();
+                              }
+                            },
+                            thumbRadius: 8,
+                            timeLabelTextStyle:
+                                const TextStyle(color: Colors.white),
+                            buffered: controller
+                                    .playerController.value.buffered.isNotEmpty
+                                ? controller
+                                    .playerController.value.buffered.last.end
+                                : null,
+                            timeLabelPadding: 4,
+                            onSeek: controller.seekTo,
+                          ),
+                        ],
                       ),
                     ),
                   ),

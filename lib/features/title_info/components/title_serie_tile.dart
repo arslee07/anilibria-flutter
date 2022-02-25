@@ -23,6 +23,7 @@ class TitleSerieTile extends StatelessWidget {
                   serie.hls!.fhd!,
                   getTitleName(title),
                   serie.serie!,
+                  serie.skips,
                 ),
               ),
               child: const Text(
@@ -38,6 +39,7 @@ class TitleSerieTile extends StatelessWidget {
                   serie.hls!.hd!,
                   getTitleName(title),
                   serie.serie!,
+                  serie.skips,
                 ),
               ),
               child: const Text(
@@ -53,6 +55,7 @@ class TitleSerieTile extends StatelessWidget {
                   serie.hls!.sd!,
                   getTitleName(title),
                   serie.serie!,
+                  serie.skips,
                 ),
               ),
               child: const Text(
