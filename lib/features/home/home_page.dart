@@ -1,5 +1,6 @@
 import 'package:anilibria_app/features/updates_feed/updates_feed_page.dart';
 import 'package:anilibria_app/features/youtube_feed/youtube_feed_page.dart';
+import 'package:anilibria_app/utils/widgets/lazy_indexed_stack.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final loc = GoRouter.of(context).location;
     return Scaffold(
-      body: IndexedStack(
+      body: LazyIndexedStack(
         children: const [UpdatesFeedPage(), YoutubeFeedPage()],
         index: _getIndex(loc),
       ),
