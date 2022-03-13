@@ -47,6 +47,17 @@ class UpdatesFeedPage extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text(err.toString())),
       ),
+      floatingActionButton: feedController.showJump
+          ? FloatingActionButton.small(
+              onPressed: () => scrollController.animateTo(
+                0,
+                curve: Curves.easeOutCubic,
+                duration: const Duration(seconds: 1),
+              ),
+              child: const Icon(Icons.arrow_upward),
+              tooltip: 'Вернуться наверх',
+            )
+          : null,
     );
   }
 }

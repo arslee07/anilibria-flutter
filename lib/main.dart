@@ -21,6 +21,9 @@ class App extends ConsumerWidget {
           accentColor: Colors.black,
           brightness: Brightness.light,
         ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.grey,
+        ),
         appBarTheme: const AppBarTheme(
           color: Colors.white,
           foregroundColor: Colors.black,
@@ -36,6 +39,9 @@ class App extends ConsumerWidget {
           primarySwatch: Colors.grey,
           accentColor: Colors.white,
           brightness: Brightness.dark,
+        ),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.grey,
         ),
       ),
       initial: AdaptiveThemeMode.system,
