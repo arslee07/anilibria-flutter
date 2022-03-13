@@ -2,6 +2,7 @@ import 'package:anilibria_app/features/youtube_feed/components/youtube_item.dart
 import 'package:anilibria_app/features/youtube_feed/youtube_feed_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class YoutubeFeedPage extends ConsumerWidget {
   const YoutubeFeedPage({Key? key}) : super(key: key);
@@ -26,7 +27,18 @@ class YoutubeFeedPage extends ConsumerWidget {
                 );
               }
 
-              return YoutubeItem(video: data[index]);
+              return ResponsiveValue<Widget>(
+                context,
+                defaultValue: YoutubeItemMobile(video: data[index]),
+                valueWhen: [
+                  Condition.largerThan(
+                    name: MOBILE,
+                    value: YoutubeItem(
+                      video: data[index],
+                    ),
+                  ),
+                ],
+              ).value!;
             },
             itemCount: data.length + 1,
           ),
