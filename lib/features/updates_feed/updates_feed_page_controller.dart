@@ -41,9 +41,7 @@ class UpdatesFeedPageController extends flutter.ChangeNotifier {
   }
 
   void handleTopJump() {
-    final s = scrollController.position.userScrollDirection ==
-            ScrollDirection.forward &&
-        scrollController.position.pixels > 0;
+    final s = scrollController.position.pixels > 140;
 
     if (s != showJump) {
       showJump = s;
