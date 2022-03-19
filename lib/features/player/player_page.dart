@@ -17,7 +17,7 @@ class PlayerPage extends ConsumerWidget {
     final controller = ref.watch(playerControllerProvider(info.url));
 
     final showSkip = info.skips?.opening != null &&
-        info.skips!.opening!.start <=
+        (info.skips!.opening!.start ?? 0) <=
             controller.playerController.value.position.inSeconds &&
         info.skips!.opening!.stop >
             controller.playerController.value.position.inSeconds;
