@@ -1,12 +1,14 @@
 import 'package:anilibria_app/features/title_info/components/title_description.dart';
 import 'package:anilibria_app/features/title_info/components/title_head.dart';
 import 'package:anilibria_app/features/title_info/components/title_info.dart';
+import 'package:anilibria_app/features/title_info/components/title_schedule.dart';
 import 'package:anilibria_app/features/title_info/components/title_serie_tile.dart';
 import 'package:anilibria_app/features/title_info/components/title_torrent_tile.dart';
 import 'package:anilibria_app/features/title_info/title_info_page_controller.dart';
 import 'package:anilibria_app/utils/config.dart';
 import 'package:anilibria_app/utils/widgets/blank_space.dart';
 import 'package:anilibria_app/utils/widgets/section.dart';
+import 'package:anilibria/anilibria.dart' as anilibria;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -72,6 +74,21 @@ class TitleInfoPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              if ((data.season?.weekDay != null &&
+                  data.status?.code == anilibria.TitleStatusCode.inWork) || data.announce != null) ...[
+                _buildDivider(),
+                SliverStack(
+                  children: [
+                    const SliverPositioned.fill(child: Section()),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(16),
+                      sliver: SliverToBoxAdapter(
+                        child: TitleSchedule(data),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
               if (data.description != null) ...[
                 _buildDivider(),
                 SliverStack(

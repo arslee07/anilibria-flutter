@@ -17,7 +17,7 @@ class App extends ConsumerWidget {
       light: ThemeData(
         primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.red,
           accentColor: Colors.black,
           brightness: Brightness.light,
         ),
@@ -34,9 +34,9 @@ class App extends ConsumerWidget {
             ),
       ),
       dark: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.red,
           accentColor: Colors.white,
           brightness: Brightness.dark,
         ),
