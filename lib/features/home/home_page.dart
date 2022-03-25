@@ -1,4 +1,4 @@
-import 'package:anilibria_app/features/updates_feed/updates_feed_page.dart';
+import 'package:anilibria_app/features/releases_feed/releases_feed_page.dart';
 import 'package:anilibria_app/features/youtube_feed/youtube_feed_page.dart';
 import 'package:anilibria_app/utils/widgets/lazy_indexed_stack.dart';
 import 'package:flutter/material.dart';

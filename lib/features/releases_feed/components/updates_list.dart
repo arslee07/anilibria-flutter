@@ -1,4 +1,4 @@
-import 'package:anilibria_app/features/updates_feed/components/title_item.dart';
+import 'package:anilibria_app/features/releases_feed/components/title_item.dart';
 import 'package:flutter/material.dart';
 import 'package:anilibria/anilibria.dart' as anilibria;
 
