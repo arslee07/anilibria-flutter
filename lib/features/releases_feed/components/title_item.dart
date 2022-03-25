@@ -88,7 +88,7 @@ class TitleItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
       child: InkWell(
         onTap:
-            title.id == null ? null : () => context.push('/titles/${title.id}'),
+            title.id == null ? null : () => context.push('/releases/${title.id}'),
         child: SizedBox(
           height: ResponsiveValue(
             context,

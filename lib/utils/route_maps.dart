@@ -13,14 +13,14 @@ final goRouterProvider = Provider(
     routes: [
       GoRoute(
         path: '/',
-        redirect: (_) => '/titles',
+        redirect: (_) => '/releases',
       ),
       GoRoute(
         path: '/youtube',
         pageBuilder: (_, __) => MaterialPage(child: HomePage(key: homeKey)),
       ),
       GoRoute(
-        path: '/titles',
+        path: '/releases',
         pageBuilder: (_, __) => MaterialPage(child: HomePage(key: homeKey)),
         routes: [
           GoRoute(

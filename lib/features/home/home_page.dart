@@ -9,15 +9,15 @@ class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   static int _getIndex(String loc) {
-    if (loc == '/titles') return 0;
+    if (loc == '/releases') return 0;
     if (loc == '/youtube') return 1;
     return 0;
   }
 
   static String _getRoute(int index) {
-    if (index == 0) return '/titles';
+    if (index == 0) return '/releases';
     if (index == 1) return '/youtube';
-    return '/titles';
+    return '/releases';
   }
 
   @override
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
     final loc = GoRouter.of(context).location;
     return Scaffold(
       body: LazyIndexedStack(
-        children: const [UpdatesFeedPage(), YoutubeFeedPage()],
+        children: const [ReleasesFeedPage(), YoutubeFeedPage()],
         index: _getIndex(loc),
       ),
       bottomNavigationBar: NavigationBar(
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home),
-            label: 'Главная',
+            label: 'Релизы',
           ),
           NavigationDestination(
             icon: FaIcon(FontAwesomeIcons.youtube),
