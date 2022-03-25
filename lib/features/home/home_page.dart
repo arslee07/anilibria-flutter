@@ -28,17 +28,15 @@ class HomePage extends StatelessWidget {
         children: const [UpdatesFeedPage(), YoutubeFeedPage()],
         index: _getIndex(loc),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _getIndex(loc),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        onTap: (index) => context.go(_getRoute(index)),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.feed),
-            label: 'Обновления',
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _getIndex(loc),
+        onDestinationSelected: (index) => context.go(_getRoute(index)),
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            label: 'Главная',
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: FaIcon(FontAwesomeIcons.youtube),
             label: 'YouTube',
           ),
