@@ -15,6 +15,7 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return AdaptiveTheme(
       light: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.red,
@@ -34,6 +35,7 @@ class App extends ConsumerWidget {
             ),
       ),
       dark: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.red,
