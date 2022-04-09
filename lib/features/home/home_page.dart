@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
         onDestinationSelected: (index) => context.go(_getRoute(index)),
         destinations: const [
           NavigationDestination(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.newspaper),
             label: 'Релизы',
           ),
           NavigationDestination(

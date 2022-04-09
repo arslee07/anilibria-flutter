@@ -75,7 +75,7 @@ class TitleInfoPage extends ConsumerWidget {
                 ],
               ),
               if ((data.season?.weekDay != null &&
-                  data.status?.code == anilibria.TitleStatusCode.inWork) || data.announce != null) ...[
+                  data.status?.code == anilibria.TitleStatusCode.inWork)) ...[
                 _buildDivider(),
                 SliverStack(
                   children: [

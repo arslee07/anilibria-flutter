@@ -10,11 +10,12 @@ class TitleSchedule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (model.season?.weekDay != null &&
             model.status?.code == anilibria.TitleStatusCode.inWork) ...[
           Wrap(
-            spacing: 2,
+            spacing: 4,
             alignment: WrapAlignment.center,
             children: [
               for (int i = 0; i < 7; i++)

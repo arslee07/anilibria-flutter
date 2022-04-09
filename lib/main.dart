@@ -16,9 +16,9 @@ class App extends ConsumerWidget {
     return AdaptiveTheme(
       light: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.grey,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.grey,
           accentColor: Colors.black,
           brightness: Brightness.light,
         ),
@@ -36,9 +36,9 @@ class App extends ConsumerWidget {
       ),
       dark: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.grey,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.grey,
           accentColor: Colors.white,
           brightness: Brightness.dark,
         ),
