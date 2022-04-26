@@ -12,7 +12,7 @@ class SearchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.push('/titles/${model.id!}'),
+      onTap: () => context.push('/releases/${model.id!}'),
       child: Container(
         color: Theme.of(context).listTileTheme.tileColor,
         child: Padding(

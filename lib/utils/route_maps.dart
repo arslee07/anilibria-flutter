@@ -1,5 +1,6 @@
 import 'package:anilibria_app/features/home/home_page.dart';
 import 'package:anilibria_app/features/player/player_page.dart';
+import 'package:anilibria_app/features/poster_preview/poster_preview_page.dart';
 import 'package:anilibria_app/features/title_info/title_info_page.dart';
 import 'package:anilibria_app/features/titles_search/titles_search_screen.dart';
 import 'package:anilibria_app/utils/keys.dart';
@@ -41,7 +42,7 @@ final goRouterProvider = Provider(
               GoRoute(
                 path: 'player',
                 redirect: (s) =>
-                    s.extra == null ? '/titles/${s.params["id"]!}' : null,
+                    s.extra == null ? '/releases/${s.params["id"]!}' : null,
                 pageBuilder: (_, state) => MaterialPage(
                   child: PlayerPage(state.extra! as PlayerTitleInfo),
                 ),
