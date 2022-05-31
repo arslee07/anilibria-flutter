@@ -9,13 +9,13 @@ environment:
     sdk: '>=2.14.0 <3.0.0'
 
 dependencies:
-    adaptive_theme: ^2.3.0
-    anilibria: ^0.8.0
+    adaptive_theme: ^3.0.0
+    anilibria: ^0.8.4
     expandable_text: ^2.2.0
     fancy_shimmer_image: ^2.0.1+1
     flutter:
         sdk: flutter
-    responsive_framework: ^0.1.5
+    responsive_framework: ^0.2.0
     transparent_image: ^2.0.0
     sliver_tools: ^0.2.5
     video_player: ^2.2.7
@@ -29,7 +29,7 @@ dependencies:
     html_unescape: ^2.0.0
 
 dev_dependencies:
-    flutter_lints: ^1.0.4
+    flutter_lints: ^2.0.1
     flutter_test:
         sdk: flutter
 
