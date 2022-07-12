@@ -1,6 +1,5 @@
 import 'package:anilibria_app/features/home/home_page.dart';
 import 'package:anilibria_app/features/player/player_page.dart';
-import 'package:anilibria_app/features/poster_preview/poster_preview_page.dart';
 import 'package:anilibria_app/features/title_info/title_info_page.dart';
 import 'package:anilibria_app/features/titles_search/titles_search_screen.dart';
 import 'package:anilibria_app/utils/keys.dart';
