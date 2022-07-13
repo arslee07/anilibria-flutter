@@ -14,37 +14,19 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return AdaptiveTheme(
-      light: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.grey,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.grey,
-          accentColor: Colors.black,
+      light: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
           brightness: Brightness.light,
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.grey,
-        ),
-        appBarTheme: const AppBarTheme(
-          color: Colors.white,
-          foregroundColor: Colors.black,
-        ),
-        chipTheme: Theme.of(context).chipTheme.copyWith(
-              backgroundColor: Colors.transparent,
-              shape: const StadiumBorder(side: BorderSide()),
-            ),
-      ),
-      dark: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.grey,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.grey,
-          accentColor: Colors.white,
+      ),
+      dark: ThemeData.from(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
           brightness: Brightness.dark,
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.grey,
-        ),
+        useMaterial3: true,
       ),
       initial: AdaptiveThemeMode.system,
       builder: (theme, darkTheme) {
@@ -55,6 +37,8 @@ class App extends ConsumerWidget {
           routeInformationParser:
               ref.read(goRouterProvider).routeInformationParser,
           routerDelegate: ref.read(goRouterProvider).routerDelegate,
+          routeInformationProvider:
+              ref.read(goRouterProvider).routeInformationProvider,
           debugShowCheckedModeBanner: false,
           builder: (context, child) => ResponsiveWrapper.builder(
             ClampingScrollWrapper.builder(context, child!),
@@ -64,7 +48,7 @@ class App extends ConsumerWidget {
               ResponsiveBreakpoint.resize(800, name: DESKTOP),
               ResponsiveBreakpoint.resize(1700, name: 'XL'),
             ],
-            background: Container(color: const Color(0xFFF5F5F5)),
+            background: Container(color: Theme.of(context).colorScheme.surface),
           ),
         );
       },
