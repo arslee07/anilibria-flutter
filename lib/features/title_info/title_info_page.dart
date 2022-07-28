@@ -5,14 +5,12 @@ import 'package:anilibria_app/features/title_info/components/title_schedule.dart
 import 'package:anilibria_app/features/title_info/components/title_serie_tile.dart';
 import 'package:anilibria_app/features/title_info/components/title_torrent_tile.dart';
 import 'package:anilibria_app/features/title_info/title_info_page_controller.dart';
-import 'package:anilibria_app/utils/config.dart';
 import 'package:anilibria_app/utils/widgets/blank_space.dart';
-import 'package:anilibria_app/utils/widgets/section.dart';
 import 'package:anilibria/anilibria.dart' as anilibria;
+import 'package:anilibria_app/utils/widgets/section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 Widget _buildDivider() => SliverToBoxAdapter(child: BlankSpace.bottom(8));
 
@@ -30,37 +28,18 @@ class TitleInfoPage extends ConsumerWidget {
           return CustomScrollView(
             slivers: [
               SliverAppBar(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.transparent,
-                expandedHeight: 450,
                 actions: [
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(Icons.more_vert),
                   ),
                 ],
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Hero(
-                    tag: id,
-                    child: FadeInImage.memoryNetwork(
-                      image: kStaticUrl.toString() +
-                          (data.posters?.original?.url ?? ''),
-                      placeholder: kTransparentImage,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
               ),
-              SliverStack(
-                children: [
-                  const SliverPositioned.fill(child: Section()),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(16),
-                    sliver: SliverToBoxAdapter(
-                      child: TitleHead(data),
-                    ),
-                  ),
-                ],
+              SliverPadding(
+                padding: const EdgeInsets.all(16),
+                sliver: SliverToBoxAdapter(
+                  child: TitleHead(data),
+                ),
               ),
               _buildDivider(),
               SliverStack(
