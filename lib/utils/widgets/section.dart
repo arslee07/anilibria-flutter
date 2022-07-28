@@ -11,6 +11,7 @@ class Section extends StatelessWidget {
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       margin: EdgeInsets.zero,
       shadowColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
       child: child,
     );
   }
