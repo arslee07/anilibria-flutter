@@ -10,6 +10,7 @@ class Section extends StatelessWidget {
     return Card(
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       margin: EdgeInsets.zero,
+      shadowColor: Colors.transparent,
       child: child,
     );
   }
