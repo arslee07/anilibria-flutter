@@ -27,6 +27,13 @@ dependencies:
     font_awesome_flutter: ^10.0.0
     url_launcher: ^6.0.18
     html_unescape: ^2.0.0
+    # TODO: upstream package when it will use an m3 navigation bar
+    adaptive_navigation:
+        git: 
+            url: https://github.com/arslee07/material-components-flutter-adaptive
+            ref: m3-navigation-bar
+            path: adaptive_navigation
+
 
 dev_dependencies:
     flutter_lints: ^2.0.1

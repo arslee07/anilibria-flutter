@@ -1,3 +1,4 @@
+import 'package:adaptive_navigation/adaptive_navigation.dart';
 import 'package:anilibria_app/features/releases_feed/releases_feed_page.dart';
 import 'package:anilibria_app/features/youtube_feed/youtube_feed_page.dart';
 import 'package:anilibria_app/utils/widgets/lazy_indexed_stack.dart';
@@ -23,25 +24,23 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loc = GoRouter.of(context).location;
-    return Scaffold(
+    return AdaptiveNavigationScaffold(
       body: LazyIndexedStack(
         children: const [ReleasesFeedPage(), YoutubeFeedPage()],
         index: _getIndex(loc),
       ),
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _getIndex(loc),
-        onDestinationSelected: (index) => context.go(_getRoute(index)),
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.newspaper),
-            label: 'Релизы',
-          ),
-          NavigationDestination(
-            icon: FaIcon(FontAwesomeIcons.youtube),
-            label: 'YouTube',
-          ),
-        ],
-      ),
+      selectedIndex: _getIndex(loc),
+      onDestinationSelected: (index) => context.go(_getRoute(index)),
+      destinations: const [
+        AdaptiveScaffoldDestination(
+          icon: Icons.newspaper,
+          title: 'Релизы',
+        ),
+        AdaptiveScaffoldDestination(
+          icon: FontAwesomeIcons.youtube,
+          title: 'YouTube',
+        ),
+      ],
     );
   }
 }
