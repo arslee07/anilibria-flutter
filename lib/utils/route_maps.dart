@@ -13,7 +13,7 @@ final goRouterProvider = Provider(
     routes: [
       GoRoute(
         path: '/',
-        redirect: (_) => '/releases',
+        redirect: (_, __) => '/releases',
       ),
       GoRoute(
         path: '/youtube',
@@ -40,7 +40,7 @@ final goRouterProvider = Provider(
             routes: [
               GoRoute(
                 path: 'player',
-                redirect: (s) =>
+                redirect: (_, s) =>
                     s.extra == null ? '/releases/${s.params["id"]!}' : null,
                 pageBuilder: (_, state) => MaterialPage(
                   child: PlayerPage(state.extra! as PlayerTitleInfo),
