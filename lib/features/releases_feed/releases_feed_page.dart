@@ -14,7 +14,7 @@ class ReleasesFeedPage extends ConsumerWidget {
     final scrollController = feedController.scrollController;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('AniLibira'), actions: [
+      appBar: AppBar(title: const Text('AniLibria'), actions: [
         IconButton(
           icon: const Icon(Icons.search),
           onPressed: () => context.push('/releases/search'),
@@ -55,7 +55,7 @@ class ReleasesFeedPage extends ConsumerWidget {
                 duration: const Duration(seconds: 1),
               ),
               child: const Icon(Icons.arrow_upward),
-              tooltip: 'Вернуться наверх',
+              tooltip: 'Вернуться',
             )
           : null,
     );
