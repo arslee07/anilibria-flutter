@@ -1,3 +1,6 @@
+> [!WARNING]
+> Moved to https://codeberg.org/arslee07/anilibria-flutter
+
 # AniLibria
 An app for [AniLibria](https://anilibria.tv) built with [Flutter](https://github.com/flutter/flutter).
 
